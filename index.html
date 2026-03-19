@@ -220,8 +220,8 @@
         <div class="container">
             <div class="section-header section-header--center">
                 <span class="section-tag" data-i18n="containers.tag">Типы контейнеров</span>
-                <h2 class="section-title" data-i18n-html="containers.title">Выберите <span class="accent">контейнер</span></h2>
-                <p class="section-desc" data-i18n="containers.desc">Подберём оптимальный тип контейнера под ваш груз</p>
+                <h2 class="section-title" data-i18n-html="containers.title">Типы <span class="accent">контейнеров</span></h2>
+                <p class="section-desc" data-i18n="containers.desc">Основные типы морских контейнеров, с которыми мы работаем</p>
             </div>
             <div class="containers__grid">
                 <div class="containers__card">
@@ -350,47 +350,44 @@
                 <p class="section-desc" data-i18n="geo.desc">Фрахтуем грузы из любого порта мира в любой с ориентацией на Украину</p>
             </div>
             <div class="geography__map-wrapper">
-                <svg class="geography__map" viewBox="0 0 900 450" xmlns="http://www.w3.org/2000/svg">
-                    <!-- North America -->
-                    <path class="geography__continent" d="M 80,95 C 95,60 140,45 185,55 C 205,60 220,75 225,95 C 228,115 220,135 205,155 C 185,178 168,190 150,195 C 130,200 115,195 105,182 C 90,168 78,148 72,128 C 66,108 68,100 80,95 Z"/>
-                    <!-- Central America -->
-                    <path class="geography__continent" d="M 155,195 C 160,192 170,195 175,200 C 178,205 175,212 170,215 C 165,218 158,215 155,210 C 152,205 153,198 155,195 Z"/>
-                    <!-- South America -->
-                    <path class="geography__continent" d="M 175,220 C 188,210 210,208 222,218 C 232,228 238,250 240,275 C 242,300 238,325 228,348 C 218,365 205,375 190,375 C 178,372 168,360 162,340 C 155,315 152,285 155,258 C 157,238 165,228 175,220 Z"/>
-                    <!-- Europe -->
-                    <path class="geography__continent" d="M 420,58 C 438,48 468,45 492,52 C 510,58 525,68 528,82 C 530,95 522,108 510,115 C 495,122 478,125 462,122 C 445,118 432,108 425,95 C 418,82 415,68 420,58 Z"/>
-                    <!-- Africa -->
-                    <path class="geography__continent" d="M 435,140 C 455,130 482,125 505,135 C 525,145 540,165 548,192 C 555,225 552,262 542,295 C 530,325 515,342 495,348 C 478,352 460,345 448,328 C 435,308 428,280 425,250 C 422,218 425,185 428,162 C 430,150 432,145 435,140 Z"/>
-                    <!-- Asia -->
-                    <path class="geography__continent" d="M 535,42 C 568,32 610,25 658,30 C 700,35 742,48 775,62 C 800,75 818,92 825,112 C 830,130 822,148 808,160 C 788,175 762,182 732,185 C 700,188 665,182 635,172 C 608,162 585,150 565,135 C 548,122 535,108 530,92 C 525,75 528,55 535,42 Z"/>
-                    <!-- South-East Asia islands -->
-                    <path class="geography__continent" d="M 750,205 C 758,198 770,195 778,200 C 785,205 788,215 785,222 C 782,228 775,230 768,228 C 760,225 755,218 752,212 C 750,208 750,206 750,205 Z"/>
-                    <path class="geography__continent" d="M 795,210 C 802,205 815,208 820,215 C 825,222 822,232 815,235 C 808,238 798,235 795,228 C 792,220 793,213 795,210 Z"/>
-                    <!-- Australia -->
-                    <path class="geography__continent" d="M 760,290 C 778,278 808,272 830,280 C 848,288 858,305 860,322 C 862,338 852,352 838,358 C 820,365 800,362 785,352 C 770,340 762,325 758,310 C 756,298 758,293 760,290 Z"/>
-
-                    <!-- Ukraine highlight -->
-                    <circle class="geography__ukraine-glow" cx="528" cy="88" r="18"/>
-                    <circle class="geography__ukraine-pulse" cx="528" cy="88" r="8"/>
-                    <circle class="geography__ukraine-dot" cx="528" cy="88" r="5"/>
-
-                    <!-- Connection lines to Ukraine -->
-                    <path class="geography__route" d="M 150,120 Q 340,50 528,88"/>
-                    <path class="geography__route geography__route--2" d="M 200,290 Q 370,150 528,88"/>
-                    <path class="geography__route geography__route--3" d="M 480,280 Q 510,180 528,88"/>
-                    <path class="geography__route geography__route--4" d="M 700,100 Q 620,60 528,88"/>
-                    <path class="geography__route geography__route--5" d="M 810,310 Q 680,180 528,88"/>
-                    <path class="geography__route geography__route--6" d="M 775,210 Q 660,140 528,88"/>
-
-                    <!-- Port dots -->
-                    <circle class="geography__port" cx="150" cy="120" r="3"/>
-                    <circle class="geography__port" cx="200" cy="290" r="3"/>
-                    <circle class="geography__port" cx="480" cy="280" r="3"/>
-                    <circle class="geography__port" cx="700" cy="100" r="3"/>
-                    <circle class="geography__port" cx="810" cy="310" r="3"/>
-                    <circle class="geography__port" cx="775" cy="210" r="3"/>
-                </svg>
-                <div class="geography__map-label" data-i18n="geo.label">Украина</div>
+                <div class="geo-network">
+                    <!-- Grid background dots -->
+                    <div class="geo-network__grid"></div>
+                    <!-- Connection lines (CSS-drawn) -->
+                    <svg class="geo-network__svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+                        <defs>
+                            <radialGradient id="nodeGlow"><stop offset="0%" stop-color="rgba(78,203,113,0.4)"/><stop offset="100%" stop-color="rgba(78,203,113,0)"/></radialGradient>
+                        </defs>
+                        <!-- Routes to Ukraine -->
+                        <line class="geo-line" x1="120" y1="140" x2="445" y2="115"/>
+                        <line class="geo-line geo-line--2" x1="160" y1="300" x2="445" y2="115"/>
+                        <line class="geo-line geo-line--3" x1="400" y1="280" x2="445" y2="115"/>
+                        <line class="geo-line geo-line--4" x1="680" y1="130" x2="445" y2="115"/>
+                        <line class="geo-line geo-line--5" x1="720" y1="320" x2="445" y2="115"/>
+                        <line class="geo-line geo-line--6" x1="560" y1="220" x2="445" y2="115"/>
+                        <!-- Ukraine glow -->
+                        <circle cx="445" cy="115" r="40" fill="url(#nodeGlow)"/>
+                        <circle class="geo-ukraine-ring" cx="445" cy="115" r="16"/>
+                        <circle cx="445" cy="115" r="6" fill="#4ecb71" filter="drop-shadow(0 0 8px rgba(78,203,113,0.9))"/>
+                        <!-- Region nodes -->
+                        <circle class="geo-node" cx="120" cy="140" r="4"/>
+                        <circle class="geo-node" cx="160" cy="300" r="4"/>
+                        <circle class="geo-node" cx="400" cy="280" r="4"/>
+                        <circle class="geo-node" cx="680" cy="130" r="4"/>
+                        <circle class="geo-node" cx="720" cy="320" r="4"/>
+                        <circle class="geo-node" cx="560" cy="220" r="4"/>
+                    </svg>
+                    <!-- Labels -->
+                    <div class="geo-network__labels">
+                        <span class="geo-label" style="left:10%;top:28%" data-i18n="geo.na">Сев. Америка</span>
+                        <span class="geo-label" style="left:15%;top:72%" data-i18n="geo.sa">Юж. Америка</span>
+                        <span class="geo-label" style="left:46%;top:67%" data-i18n="geo.af">Африка</span>
+                        <span class="geo-label geo-label--ukraine" style="left:53%;top:20%" data-i18n="geo.label">Украина</span>
+                        <span class="geo-label" style="left:82%;top:25%" data-i18n="geo.as">Азия</span>
+                        <span class="geo-label" style="left:86%;top:76%" data-i18n="geo.au">Австралия</span>
+                        <span class="geo-label" style="left:66%;top:50%" data-i18n="geo.me">Бл. Восток</span>
+                    </div>
+                </div>
             </div>
             <div class="geography__info">
                 <div class="geography__info-card">
