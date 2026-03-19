@@ -1,16 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-    initTheme();
-    initSplash();
-    initHeader();
-    initMobileMenu();
-    initLangSwitcher();
-    initSmoothScroll();
-    initScrollSpy();
-    initCountUp();
-    initRevealAnimations();
-    initBackToTop();
-    initFAQ();
-    initContactForm();
+    var inits = [initTheme, initSplash, initHeader, initMobileMenu, initLangSwitcher,
+                 initSmoothScroll, initScrollSpy, initCountUp, initRevealAnimations,
+                 initBackToTop, initFAQ, initContactForm];
+    for (var i = 0; i < inits.length; i++) {
+        try { inits[i](); } catch(e) { /* prevent cascade failure */ }
+    }
 });
 
 /* ========================================
@@ -98,69 +92,73 @@ function initMobileMenu() {
    Language Switcher
    ======================================== */
 function initLangSwitcher() {
-    var btn = document.getElementById('langBtn');
-    var dropdown = document.getElementById('langDropdown');
-    if (!btn || !dropdown) return;
-
     var saved = localStorage.getItem('lang') || 'ru';
     applyLanguage(saved);
 
-    btn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        dropdown.classList.toggle('open');
-    });
+    var langBtn = document.getElementById('langBtn');
+    var dropdown = document.getElementById('langDropdown');
 
-    var options = dropdown.querySelectorAll('.header__lang-option');
-    for (var i = 0; i < options.length; i++) {
-        options[i].addEventListener('click', function(e) {
+    if (langBtn && dropdown) {
+        langBtn.addEventListener('click', function(e) {
             e.stopPropagation();
-            var lang = this.getAttribute('data-lang');
-            applyLanguage(lang);
-            localStorage.setItem('lang', lang);
-            dropdown.classList.remove('open');
+            dropdown.classList.toggle('open');
         });
     }
 
-    document.addEventListener('click', function() {
-        dropdown.classList.remove('open');
+    document.addEventListener('click', function(e) {
+        var option = e.target.closest
+            ? e.target.closest('.header__lang-option')
+            : findParent(e.target, 'header__lang-option');
+
+        if (option) {
+            var lang = option.getAttribute('data-lang');
+            if (lang) {
+                applyLanguage(lang);
+                try { localStorage.setItem('lang', lang); } catch(ex) {}
+            }
+            if (dropdown) dropdown.classList.remove('open');
+            return;
+        }
+
+        if (dropdown) dropdown.classList.remove('open');
     });
 }
 
+function findParent(el, className) {
+    while (el && el !== document) {
+        if (el.classList && el.classList.contains(className)) return el;
+        el = el.parentElement;
+    }
+    return null;
+}
+
 function applyLanguage(lang) {
-    var t = window.translations && window.translations[lang];
+    if (!window.translations) return;
+    var t = window.translations[lang];
     if (!t) return;
 
-    var textEls = document.querySelectorAll('[data-i18n]');
-    for (var i = 0; i < textEls.length; i++) {
-        var key = textEls[i].getAttribute('data-i18n');
-        if (t[key] !== undefined) {
-            textEls[i].textContent = t[key];
-        }
+    var els = document.querySelectorAll('[data-i18n]');
+    for (var i = 0; i < els.length; i++) {
+        var key = els[i].getAttribute('data-i18n');
+        if (t[key] !== undefined) els[i].textContent = t[key];
     }
 
     var htmlEls = document.querySelectorAll('[data-i18n-html]');
     for (var i = 0; i < htmlEls.length; i++) {
         var key = htmlEls[i].getAttribute('data-i18n-html');
-        if (t[key] !== undefined) {
-            htmlEls[i].innerHTML = t[key];
-        }
+        if (t[key] !== undefined) htmlEls[i].innerHTML = t[key];
     }
 
-    var placeholderEls = document.querySelectorAll('[data-i18n-placeholder]');
-    for (var i = 0; i < placeholderEls.length; i++) {
-        var key = placeholderEls[i].getAttribute('data-i18n-placeholder');
-        if (t[key] !== undefined) {
-            placeholderEls[i].placeholder = t[key];
-        }
+    var phEls = document.querySelectorAll('[data-i18n-placeholder]');
+    for (var i = 0; i < phEls.length; i++) {
+        var key = phEls[i].getAttribute('data-i18n-placeholder');
+        if (t[key] !== undefined) phEls[i].placeholder = t[key];
     }
 
-    document.documentElement.lang = lang === 'uk' ? 'uk' : lang;
+    document.documentElement.lang = (lang === 'uk') ? 'uk' : lang;
 
-    var langBtn = document.getElementById('langBtn');
-    if (langBtn) {
-        var currentSpan = langBtn.querySelector('.header__lang-current');
-        if (currentSpan) currentSpan.textContent = lang.toUpperCase();
-    }
+    var currentSpan = document.querySelector('.header__lang-current');
+    if (currentSpan) currentSpan.textContent = lang.toUpperCase();
 
     var allOptions = document.querySelectorAll('.header__lang-option');
     for (var i = 0; i < allOptions.length; i++) {
