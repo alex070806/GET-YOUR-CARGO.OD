@@ -277,6 +277,16 @@ function initCountUp() {
     }
 
     setTimeout(function() { animate(); }, 3000);
+
+    window.addEventListener('pageshow', function(e) {
+        if (e.persisted) {
+            animated = false;
+            for (var j = 0; j < counters.length; j++) {
+                counters[j].textContent = '0';
+            }
+            setTimeout(function() { animate(); }, 500);
+        }
+    });
 }
 
 /* ========================================
