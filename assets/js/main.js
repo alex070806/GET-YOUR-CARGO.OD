@@ -222,71 +222,56 @@ function initScrollSpy() {
 }
 
 /* ========================================
-   Count-up with bounce animation
+   Count-up animation
    ======================================== */
 function initCountUp() {
+    runCounters();
+    window.addEventListener('pageshow', function() { runCounters(); });
+}
+
+function runCounters() {
     var counters = document.querySelectorAll('.hero__stat-number[data-count]');
-    var animated = false;
+    if (!counters.length) return;
 
-    function animate() {
-        if (animated) return;
-        animated = true;
+    for (var i = 0; i < counters.length; i++) {
+        counters[i].textContent = '0';
+        counters[i].removeAttribute('data-done');
+    }
+
+    function go() {
         for (var i = 0; i < counters.length; i++) {
-            (function(el) {
-                var target = parseInt(el.getAttribute('data-count'), 10);
-                var duration = 2000;
-                var startTime = null;
-
-                function easeOutCubic(t) {
-                    return 1 - Math.pow(1 - t, 3);
-                }
-
-                function tick(timestamp) {
-                    if (!startTime) startTime = timestamp;
-                    var progress = Math.min((timestamp - startTime) / duration, 1);
-                    var eased = easeOutCubic(progress);
-                    var current = Math.round(eased * target);
-                    el.textContent = current;
-
-                    var bounce = (1 - progress) * 4;
-                    el.style.transform = 'translateY(' + (Math.sin(progress * Math.PI * 6) * bounce) + 'px)';
-
-                    if (progress < 1) {
-                        requestAnimationFrame(tick);
-                    } else {
-                        el.style.transform = '';
-                    }
-                }
-                requestAnimationFrame(tick);
-            })(counters[i]);
+            if (counters[i].getAttribute('data-done')) continue;
+            animateOne(counters[i]);
         }
     }
 
-    var stats = document.querySelector('.hero__stats');
-    if (!stats) return;
+    setTimeout(go, 2500);
+}
 
-    if ('IntersectionObserver' in window) {
-        var observer = new IntersectionObserver(function(entries) {
-            for (var i = 0; i < entries.length; i++) {
-                if (entries[i].isIntersecting) { animate(); observer.disconnect(); }
-            }
-        }, { threshold: 0.1 });
-        observer.observe(stats);
-    } else {
-        animate();
-    }
+function animateOne(el) {
+    if (el.getAttribute('data-done')) return;
+    el.setAttribute('data-done', '1');
+    var target = parseInt(el.getAttribute('data-count'), 10);
+    var start = Date.now();
+    var duration = 1800;
 
-    setTimeout(function() { animate(); }, 3000);
+    function step() {
+        var t = Math.min((Date.now() - start) / duration, 1);
+        var ease = 1 - Math.pow(1 - t, 3);
+        var val = Math.round(ease * target);
+        el.textContent = val;
 
-    window.addEventListener('pageshow', function(e) {
-        if (e.persisted) {
-            animated = false;
-            for (var j = 0; j < counters.length; j++) {
-                counters[j].textContent = '0';
-            }
-            setTimeout(function() { animate(); }, 500);
+        var shake = (1 - t) * 3;
+        el.style.transform = 'translateY(' + Math.round(Math.sin(t * 20) * shake) + 'px)';
+
+        if (t < 1) {
+            requestAnimationFrame(step);
+        } else {
+            el.textContent = target;
+            el.style.transform = '';
         }
-    });
+    }
+    requestAnimationFrame(step);
 }
 
 /* ========================================
