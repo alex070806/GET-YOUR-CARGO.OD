@@ -585,16 +585,38 @@ input, textarea { font-family: inherit; font-size: inherit; }
     .header__controls { opacity: 0; transform: translateY(20px); transition: opacity 0.3s ease 0.4s, transform 0.3s ease 0.4s; flex-direction: column; gap: 1.5rem; }
     .header__nav.open .header__controls { opacity: 1; transform: translateY(0); }
 
-    /* Language dropdown: open upward inside the mobile overlay */
-    .header__lang-dropdown {
-        top: auto;
-        bottom: calc(100% + 8px);
-        left: 50%;
-        right: auto;
-        transform: translateX(-50%) translateY(8px);
+    /* Language switcher: inline pills instead of dropdown on mobile */
+    .header__lang-btn {
+        display: none;
     }
-    .header__lang-dropdown.open {
-        transform: translateX(-50%) translateY(0);
+    .header__lang-dropdown {
+        position: static !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+        background: transparent !important;
+        box-shadow: none !important;
+        min-width: auto;
+        border-radius: 0;
+        overflow: visible;
+    }
+    .header__lang-option {
+        width: auto;
+        padding: 0.5rem 1rem;
+        color: rgba(255,255,255,0.7) !important;
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: var(--radius-full);
+        text-align: center;
+    }
+    .header__lang-option:hover,
+    .header__lang-option.active {
+        background: rgba(78, 203, 113, 0.15) !important;
+        color: #fff !important;
+        border-color: var(--color-accent);
     }
 
     /* Layout adjustments */
