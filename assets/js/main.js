@@ -222,27 +222,46 @@ function initScrollSpy() {
 }
 
 /* ========================================
-   Count-up animation
+   Count-up with scroll/roll animation
    ======================================== */
 function initCountUp() {
-    var counters = document.querySelectorAll('.hero__stat-number[data-count]');
+    var rollers = document.querySelectorAll('.hero__stat-roller[data-count]');
     var animated = false;
 
     function animate() {
         if (animated) return;
         animated = true;
-        for (var i = 0; i < counters.length; i++) {
-            (function(counter) {
-                var target = parseInt(counter.getAttribute('data-count'), 10);
+        for (var i = 0; i < rollers.length; i++) {
+            (function(roller) {
+                var target = parseInt(roller.getAttribute('data-count'), 10);
+                var numberEl = roller.querySelector('.hero__stat-number');
                 var duration = 2000;
-                var step = Math.max(1, Math.ceil(target / (duration / 16)));
-                var current = 0;
-                var timer = setInterval(function() {
-                    current += step;
-                    if (current >= target) { current = target; clearInterval(timer); }
-                    counter.textContent = current;
-                }, 16);
-            })(counters[i]);
+                var startTime = null;
+
+                function easeOutCubic(t) {
+                    return 1 - Math.pow(1 - t, 3);
+                }
+
+                function tick(timestamp) {
+                    if (!startTime) startTime = timestamp;
+                    var progress = Math.min((timestamp - startTime) / duration, 1);
+                    var eased = easeOutCubic(progress);
+                    var current = Math.round(eased * target);
+
+                    numberEl.textContent = current;
+
+                    var speed = (1 - progress) * 3;
+                    numberEl.style.transform = 'translateY(' + (Math.sin(progress * Math.PI * 4) * speed) + 'px)';
+
+                    if (progress < 1) {
+                        requestAnimationFrame(tick);
+                    } else {
+                        numberEl.style.transform = '';
+                    }
+                }
+
+                requestAnimationFrame(tick);
+            })(rollers[i]);
         }
     }
 
