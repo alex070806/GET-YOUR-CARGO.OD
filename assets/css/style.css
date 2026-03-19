@@ -585,6 +585,18 @@ input, textarea { font-family: inherit; font-size: inherit; }
     .header__controls { opacity: 0; transform: translateY(20px); transition: opacity 0.3s ease 0.4s, transform 0.3s ease 0.4s; flex-direction: column; gap: 1.5rem; }
     .header__nav.open .header__controls { opacity: 1; transform: translateY(0); }
 
+    /* Language dropdown: open upward inside the mobile overlay */
+    .header__lang-dropdown {
+        top: auto;
+        bottom: calc(100% + 8px);
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%) translateY(8px);
+    }
+    .header__lang-dropdown.open {
+        transform: translateX(-50%) translateY(0);
+    }
+
     /* Layout adjustments */
     .about__grid { grid-template-columns: 1fr; }
     .services__grid { grid-template-columns: repeat(2,1fr); }
