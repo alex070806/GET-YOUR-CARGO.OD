@@ -554,26 +554,28 @@ input, textarea { font-family: inherit; font-size: inherit; }
    Responsive
    ======================================== */
 
-/* Large tablets / small desktops */
+/* Burger menu kicks in at 1024px — covers all tablets and phones */
 @media (max-width: 1024px) {
-    .about__grid { grid-template-columns: 1fr; }
-    .services__grid { grid-template-columns: repeat(2,1fr); }
-    .containers__grid { grid-template-columns: repeat(2,1fr); }
-    .geography__info { grid-template-columns: repeat(2,1fr); }
-    .geography__info .geography__info-card:last-child { grid-column: span 2; max-width: 50%; justify-self: center; }
-    .cta__inner { flex-direction: column; text-align: center; align-items: center; }
-    .contact__grid { grid-template-columns: 1fr; }
-}
-
-/* Tablets */
-@media (max-width: 768px) {
     :root { --header-height: 64px; }
+
+    /* Switch to burger menu */
     .header__burger { display: flex; }
     .header__right-mobile { display: flex; }
     .header__controls .theme-btn { display: none; }
     .theme-btn--mobile { display: block; }
-    .header__nav { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #0f1923; flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem; z-index: 999; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.3s ease, visibility 0.3s ease; }
+
+    /* Fullscreen mobile nav overlay */
+    .header__nav {
+        position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+        background: #0f1923;
+        flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem;
+        z-index: 999;
+        opacity: 0; visibility: hidden; pointer-events: none;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
     .header__nav.open { opacity: 1; visibility: visible; pointer-events: auto; }
+
+    /* Nav links cascade animation */
     .header__nav-list { flex-direction: column; gap: 1.5rem; }
     .header__nav-link { font-size: var(--font-size-lg); opacity: 0; transform: translateY(20px); transition: opacity 0.3s ease, transform 0.3s ease, color 0.15s ease; }
     .header__nav.open .header__nav-link { opacity: 1; transform: translateY(0); }
@@ -584,48 +586,47 @@ input, textarea { font-family: inherit; font-size: inherit; }
     .header__nav.open li:nth-child(5) .header__nav-link { transition-delay: 0.25s; }
     .header__nav.open li:nth-child(6) .header__nav-link { transition-delay: 0.3s; }
     .header__nav.open li:nth-child(7) .header__nav-link { transition-delay: 0.35s; }
-    .header__controls { opacity: 0; transform: translateY(20px); transition: opacity 0.3s ease 0.4s, transform 0.3s ease 0.4s; }
+    .header__controls { opacity: 0; transform: translateY(20px); transition: opacity 0.3s ease 0.4s, transform 0.3s ease 0.4s; flex-direction: column; gap: 1.5rem; }
     .header__nav.open .header__controls { opacity: 1; transform: translateY(0); }
-    .header__controls { flex-direction: column; gap: 1.5rem; }
-    .hero__actions { flex-direction: column; }
-    .hero__stats { flex-direction: row; gap: 2rem; flex-wrap: wrap; }
-    .services__grid { grid-template-columns: 1fr; }
-    .geography__info { grid-template-columns: 1fr; }
-    .geography__info .geography__info-card:last-child { grid-column: span 1; max-width: 100%; }
+
+    /* Layout adjustments */
+    .about__grid { grid-template-columns: 1fr; }
+    .services__grid { grid-template-columns: repeat(2,1fr); }
+    .containers__grid { grid-template-columns: repeat(2,1fr); }
+    .geography__info { grid-template-columns: repeat(2,1fr); }
+    .geography__info .geography__info-card:last-child { grid-column: span 2; max-width: 50%; justify-self: center; }
+    .cta__inner { flex-direction: column; text-align: center; align-items: center; }
+    .contact__grid { grid-template-columns: 1fr; }
     .footer__inner { grid-template-columns: 1fr; gap: 2rem; }
-    .about { padding: 4rem 0; }
-    .services { padding: 4rem 0; }
-    .containers { padding: 4rem 0; }
-    .geography { padding: 4rem 0; }
-    .faq { padding: 4rem 0; }
-    .contact { padding: 4rem 0; }
-    .cta { padding: 4rem 0; }
+
+    .about, .services, .containers, .geography, .faq, .contact, .cta { padding: 4rem 0; }
     .section-header { margin-bottom: 2.5rem; }
 }
 
-/* Small phones */
-@media (max-width: 480px) {
-    .container { padding: 0 1rem; }
+/* Phones */
+@media (max-width: 640px) {
+    .container { padding: 0 1.25rem; }
     .hero__inner { padding: 3rem 0; }
-    .hero__badge { font-size: var(--font-size-xs); padding: 0.4rem 1rem; }
-    .hero__stats { flex-direction: column; gap: 1.5rem; }
-    .hero__stat-number { font-size: 2rem; }
-    .btn { padding: 0.75rem 1.5rem; font-size: var(--font-size-sm); }
-    .btn--lg { padding: 0.875rem 2rem; font-size: var(--font-size-base); }
+    .hero__actions { flex-direction: column; }
+    .hero__stats { gap: 2rem; flex-wrap: wrap; }
+    .services__grid { grid-template-columns: 1fr; }
     .containers__grid { grid-template-columns: 1fr; }
-    .cta__inner { padding: 2.5rem 1.25rem; }
-    .faq__question { padding: 1rem 1.25rem; font-size: var(--font-size-sm); }
-    .faq__answer p { padding: 0 1.25rem 1.25rem; }
+    .geography__info { grid-template-columns: 1fr; }
+    .geography__info .geography__info-card:last-child { grid-column: span 1; max-width: 100%; }
     .about__card { padding: 2rem; }
     .services__card { padding: 2rem; }
     .contact__form-wrapper { padding: 2rem; }
+    .cta__inner { padding: 2.5rem 1.5rem; }
+    .faq__question { padding: 1.25rem 1.5rem; }
+    .faq__answer p { padding: 0 1.5rem 1.25rem; }
     .splash__logo { width: 80px; height: 80px; }
 }
 
-/* Very small screens */
-@media (max-width: 360px) {
-    .container { padding: 0 0.75rem; }
+/* Small phones */
+@media (max-width: 400px) {
+    .container { padding: 0 1rem; }
+    .hero__stat-number { font-size: 2rem; }
+    .hero__badge { font-size: var(--font-size-xs); padding: 0.4rem 1rem; }
+    .btn { padding: 0.75rem 1.5rem; font-size: var(--font-size-sm); }
     .header__logo-text { font-size: var(--font-size-sm); }
-    .hero__stat-number { font-size: 1.75rem; }
-    .containers__card { padding: 1.5rem; }
 }

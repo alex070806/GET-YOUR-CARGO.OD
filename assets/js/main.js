@@ -270,11 +270,13 @@ function initCountUp() {
             for (var i = 0; i < entries.length; i++) {
                 if (entries[i].isIntersecting) { animate(); observer.disconnect(); }
             }
-        }, { threshold: 0.5 });
+        }, { threshold: 0.1 });
         observer.observe(stats);
     } else {
         animate();
     }
+
+    setTimeout(function() { animate(); }, 3000);
 }
 
 /* ========================================
