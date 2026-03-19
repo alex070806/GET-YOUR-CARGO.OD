@@ -349,46 +349,6 @@
                 <h2 class="section-title" data-i18n-html="geo.title">География <span class="accent">деятельности</span></h2>
                 <p class="section-desc" data-i18n="geo.desc">Фрахтуем грузы из любого порта мира в любой с ориентацией на Украину</p>
             </div>
-            <div class="geography__map-wrapper">
-                <div class="geo-network">
-                    <!-- Grid background dots -->
-                    <div class="geo-network__grid"></div>
-                    <!-- Connection lines (CSS-drawn) -->
-                    <svg class="geo-network__svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
-                        <defs>
-                            <radialGradient id="nodeGlow"><stop offset="0%" stop-color="rgba(78,203,113,0.4)"/><stop offset="100%" stop-color="rgba(78,203,113,0)"/></radialGradient>
-                        </defs>
-                        <!-- Routes to Ukraine -->
-                        <line class="geo-line" x1="120" y1="140" x2="445" y2="115"/>
-                        <line class="geo-line geo-line--2" x1="160" y1="300" x2="445" y2="115"/>
-                        <line class="geo-line geo-line--3" x1="400" y1="280" x2="445" y2="115"/>
-                        <line class="geo-line geo-line--4" x1="680" y1="130" x2="445" y2="115"/>
-                        <line class="geo-line geo-line--5" x1="720" y1="320" x2="445" y2="115"/>
-                        <line class="geo-line geo-line--6" x1="560" y1="220" x2="445" y2="115"/>
-                        <!-- Ukraine glow -->
-                        <circle cx="445" cy="115" r="40" fill="url(#nodeGlow)"/>
-                        <circle class="geo-ukraine-ring" cx="445" cy="115" r="16"/>
-                        <circle cx="445" cy="115" r="6" fill="#4ecb71" filter="drop-shadow(0 0 8px rgba(78,203,113,0.9))"/>
-                        <!-- Region nodes -->
-                        <circle class="geo-node" cx="120" cy="140" r="4"/>
-                        <circle class="geo-node" cx="160" cy="300" r="4"/>
-                        <circle class="geo-node" cx="400" cy="280" r="4"/>
-                        <circle class="geo-node" cx="680" cy="130" r="4"/>
-                        <circle class="geo-node" cx="720" cy="320" r="4"/>
-                        <circle class="geo-node" cx="560" cy="220" r="4"/>
-                    </svg>
-                    <!-- Labels -->
-                    <div class="geo-network__labels">
-                        <span class="geo-label" style="left:10%;top:28%" data-i18n="geo.na">Сев. Америка</span>
-                        <span class="geo-label" style="left:15%;top:72%" data-i18n="geo.sa">Юж. Америка</span>
-                        <span class="geo-label" style="left:46%;top:67%" data-i18n="geo.af">Африка</span>
-                        <span class="geo-label geo-label--ukraine" style="left:53%;top:20%" data-i18n="geo.label">Украина</span>
-                        <span class="geo-label" style="left:82%;top:25%" data-i18n="geo.as">Азия</span>
-                        <span class="geo-label" style="left:86%;top:76%" data-i18n="geo.au">Австралия</span>
-                        <span class="geo-label" style="left:66%;top:50%" data-i18n="geo.me">Бл. Восток</span>
-                    </div>
-                </div>
-            </div>
             <div class="geography__info">
                 <div class="geography__info-card">
                     <div class="geography__info-icon">
@@ -457,15 +417,6 @@
                     </button>
                     <div class="faq__answer">
                         <p data-i18n="faq.a4">Стоимость зависит от маршрута, типа контейнера, объёма и веса груза, а также текущих ставок морских линий. Свяжитесь с нами для получения актуальной котировки — мы подберём лучшее предложение.</p>
-                    </div>
-                </div>
-                <div class="faq__item">
-                    <button class="faq__question" aria-expanded="false">
-                        <span data-i18n="faq.q5">Работаете ли вы с опасными грузами?</span>
-                        <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </button>
-                    <div class="faq__answer">
-                        <p data-i18n="faq.a5">Да, мы имеем опыт работы с грузами классов опасности IMO. Для таких перевозок требуются специальные документы и сертификаты. Обратитесь к нам — мы проконсультируем по всем требованиям.</p>
                     </div>
                 </div>
                 <div class="faq__item">

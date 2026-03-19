@@ -26,8 +26,12 @@ function initTheme() {
         toggles[i].addEventListener('click', function() {
             var current = document.documentElement.getAttribute('data-theme');
             var next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.classList.add('theme-transition');
             document.documentElement.setAttribute('data-theme', next);
             localStorage.setItem('theme', next);
+            setTimeout(function() {
+                document.documentElement.classList.remove('theme-transition');
+            }, 600);
         });
     }
 }
@@ -244,7 +248,7 @@ function initCountUp() {
    Reveal on scroll
    ======================================== */
 function initRevealAnimations() {
-    var selectors = '.about__card,.about__feature,.services__card,.containers__card,.geography__info-card,.geography__map-wrapper,.contact__card,.contact__form-wrapper,.cta__inner,.section-header,.faq__item';
+    var selectors = '.about__card,.about__feature,.services__card,.containers__card,.geography__info-card,.contact__card,.contact__form-wrapper,.cta__inner,.section-header,.faq__item';
     var elements = document.querySelectorAll(selectors);
 
     for (var i = 0; i < elements.length; i++) {
