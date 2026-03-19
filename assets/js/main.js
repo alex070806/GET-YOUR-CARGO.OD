@@ -222,19 +222,18 @@ function initScrollSpy() {
 }
 
 /* ========================================
-   Count-up with scroll/roll animation
+   Count-up with bounce animation
    ======================================== */
 function initCountUp() {
-    var rollers = document.querySelectorAll('.hero__stat-roller[data-count]');
+    var counters = document.querySelectorAll('.hero__stat-number[data-count]');
     var animated = false;
 
     function animate() {
         if (animated) return;
         animated = true;
-        for (var i = 0; i < rollers.length; i++) {
-            (function(roller) {
-                var target = parseInt(roller.getAttribute('data-count'), 10);
-                var numberEl = roller.querySelector('.hero__stat-number');
+        for (var i = 0; i < counters.length; i++) {
+            (function(el) {
+                var target = parseInt(el.getAttribute('data-count'), 10);
                 var duration = 2000;
                 var startTime = null;
 
@@ -247,21 +246,19 @@ function initCountUp() {
                     var progress = Math.min((timestamp - startTime) / duration, 1);
                     var eased = easeOutCubic(progress);
                     var current = Math.round(eased * target);
+                    el.textContent = current;
 
-                    numberEl.textContent = current;
-
-                    var speed = (1 - progress) * 3;
-                    numberEl.style.transform = 'translateY(' + (Math.sin(progress * Math.PI * 4) * speed) + 'px)';
+                    var bounce = (1 - progress) * 4;
+                    el.style.transform = 'translateY(' + (Math.sin(progress * Math.PI * 6) * bounce) + 'px)';
 
                     if (progress < 1) {
                         requestAnimationFrame(tick);
                     } else {
-                        numberEl.style.transform = '';
+                        el.style.transform = '';
                     }
                 }
-
                 requestAnimationFrame(tick);
-            })(rollers[i]);
+            })(counters[i]);
         }
     }
 
