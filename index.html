@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Get Your Cargo.OD — Транспортно-экспедиторская компания</title>
-    <meta name="description" content="Get Your Cargo.OD — надёжная транспортно-экспедиторская компания. Экспедирование в портах Констанции, транзитные декларации, доставка грузов из Румынии в Украину.">
+    <meta name="description" content="Get Your Cargo.OD — международная транспортно-экспедиторская компания. Морской фрахт из любого порта мира, экспедирование, таможенное оформление, доставка грузов в Украину.">
     <link rel="icon" type="image/png" href="assets/images/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <!-- Header / Navigation -->
+
+    <!-- Header -->
     <header class="header" id="header">
         <div class="container header__inner">
             <a href="#hero" class="header__logo">
@@ -21,90 +22,100 @@
             </a>
             <nav class="header__nav" id="nav">
                 <ul class="header__nav-list">
-                    <li><a href="#hero" class="header__nav-link active" data-section="hero">Главная</a></li>
-                    <li><a href="#about" class="header__nav-link" data-section="about">О нас</a></li>
-                    <li><a href="#services" class="header__nav-link" data-section="services">Услуги</a></li>
-                    <li><a href="#geography" class="header__nav-link" data-section="geography">География</a></li>
-                    <li><a href="#contact" class="header__nav-link" data-section="contact">Контакты</a></li>
+                    <li><a href="#hero" class="header__nav-link active" data-section="hero" data-i18n="nav.home">Главная</a></li>
+                    <li><a href="#about" class="header__nav-link" data-section="about" data-i18n="nav.about">О нас</a></li>
+                    <li><a href="#services" class="header__nav-link" data-section="services" data-i18n="nav.services">Услуги</a></li>
+                    <li><a href="#containers" class="header__nav-link" data-section="containers" data-i18n="nav.containers">Контейнеры</a></li>
+                    <li><a href="#geography" class="header__nav-link" data-section="geography" data-i18n="nav.geography">География</a></li>
+                    <li><a href="#faq" class="header__nav-link" data-section="faq">FAQ</a></li>
+                    <li><a href="#contact" class="header__nav-link" data-section="contact" data-i18n="nav.contact">Контакты</a></li>
                 </ul>
-                <div class="header__lang" id="langSwitcher">
-                    <button class="header__lang-btn" id="langBtn" aria-label="Выбор языка">
-                        <span class="header__lang-current">RU</span>
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <div class="header__controls">
+                    <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+                        <svg class="theme-toggle__icon theme-toggle__icon--light" width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/><path d="M12 1V3M12 21V23M4.22 4.22L5.64 5.64M18.36 18.36L19.78 19.78M1 12H3M21 12H23M4.22 19.78L5.64 18.36M18.36 5.64L19.78 4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                        <svg class="theme-toggle__icon theme-toggle__icon--dark" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </button>
-                    <ul class="header__lang-dropdown" id="langDropdown">
-                        <li><button class="header__lang-option active" data-lang="ru">RU</button></li>
-                        <li><button class="header__lang-option" data-lang="en">EN</button></li>
-                        <li><button class="header__lang-option" data-lang="ro">RO</button></li>
-                        <li><button class="header__lang-option" data-lang="uk">UK</button></li>
-                    </ul>
+                    <div class="header__lang" id="langSwitcher">
+                        <button class="header__lang-btn" id="langBtn" aria-label="Выбор языка">
+                            <span class="header__lang-current">RU</span>
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <ul class="header__lang-dropdown" id="langDropdown">
+                            <li><button class="header__lang-option active" data-lang="ru">RU — Русский</button></li>
+                            <li><button class="header__lang-option" data-lang="uk">UK — Українська</button></li>
+                            <li><button class="header__lang-option" data-lang="en">EN — English</button></li>
+                            <li><button class="header__lang-option" data-lang="ro">RO — Română</button></li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
-            <button class="header__burger" id="burger" aria-label="Открыть меню">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <div class="header__right-mobile">
+                <button class="theme-toggle theme-toggle--mobile" id="themeToggleMobile" aria-label="Переключить тему">
+                    <svg class="theme-toggle__icon theme-toggle__icon--light" width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/><path d="M12 1V3M12 21V23M4.22 4.22L5.64 5.64M18.36 18.36L19.78 19.78M1 12H3M21 12H23M4.22 19.78L5.64 18.36M18.36 5.64L19.78 4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    <svg class="theme-toggle__icon theme-toggle__icon--dark" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <button class="header__burger" id="burger" aria-label="Открыть меню">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section class="hero" id="hero">
-        <div class="hero__bg">
-            <div class="hero__gradient"></div>
-        </div>
+        <div class="hero__bg"><div class="hero__gradient"></div></div>
         <div class="container hero__inner">
             <div class="hero__content">
-                <div class="hero__badge">Транспортно-экспедиторская компания</div>
-                <h1 class="hero__title">Доставим ваш груз <br><span class="accent">быстро и надёжно</span></h1>
-                <p class="hero__subtitle">Экспедирование в портах Констанции, транзитные декларации в Украину, полный комплекс транспортных услуг из Румынии в Украину</p>
+                <div class="hero__badge" data-i18n="hero.badge">Транспортно-экспедиторская компания</div>
+                <h1 class="hero__title" data-i18n-html="hero.title">Доставим ваш груз <br><span class="accent">быстро и надёжно</span></h1>
+                <p class="hero__subtitle" data-i18n="hero.subtitle">Морской фрахт из любого порта мира, экспедирование в портах Констанции, транзитные декларации, полный комплекс транспортных услуг с ориентацией на Украину</p>
                 <div class="hero__actions">
-                    <a href="#contact" class="btn btn--primary">Связаться с нами</a>
-                    <a href="#services" class="btn btn--outline">Наши услуги</a>
+                    <a href="#contact" class="btn btn--primary" data-i18n="hero.cta1">Связаться с нами</a>
+                    <a href="#services" class="btn btn--outline" data-i18n="hero.cta2">Наши услуги</a>
                 </div>
                 <div class="hero__stats">
                     <div class="hero__stat">
                         <span class="hero__stat-number" data-count="500">0</span><span class="hero__stat-plus">+</span>
-                        <span class="hero__stat-label">Доставленных грузов</span>
+                        <span class="hero__stat-label" data-i18n="hero.stat1">Доставленных грузов</span>
                     </div>
                     <div class="hero__stat">
-                        <span class="hero__stat-number" data-count="6">0</span>
-                        <span class="hero__stat-label">Стран присутствия</span>
+                        <span class="hero__stat-number" data-count="50">0</span><span class="hero__stat-plus">+</span>
+                        <span class="hero__stat-label" data-i18n="hero.stat2">Стран и портов</span>
                     </div>
                     <div class="hero__stat">
                         <span class="hero__stat-number" data-count="3">0</span><span class="hero__stat-plus">+</span>
-                        <span class="hero__stat-label">Года опыта</span>
+                        <span class="hero__stat-label" data-i18n="hero.stat3">Года опыта</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="hero__scroll">
-            <a href="#about" class="hero__scroll-link" aria-label="Прокрутить вниз">
+            <a href="#about" class="hero__scroll-link" aria-label="Scroll down">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 5V19M12 19L5 12M12 19L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About -->
     <section class="about" id="about">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">О компании</span>
-                <h2 class="section-title">Познакомьтесь с <span class="accent">Get Your Cargo.OD</span></h2>
+                <span class="section-tag" data-i18n="about.tag">О компании</span>
+                <h2 class="section-title" data-i18n-html="about.title">Познакомьтесь с <span class="accent">Get Your Cargo.OD</span></h2>
             </div>
             <div class="about__grid">
                 <div class="about__text">
-                    <p class="about__lead">Ваше удобство — наша главная цель</p>
-                    <p>Благодаря оперативности, эффективности и честности транспортно-экспедиторская компания «Get Your Cargo.OD» имеет заслуженную репутацию профессионала в своей области.</p>
-                    <p>Мы готовы взяться за решение любой задачи, грамотно управляя проектом за счёт отточенных навыков и богатого опыта. Для успеха любого проекта крайне важно наладить эффективное взаимодействие с клиентом, поэтому мы всегда работаем в тесном контакте.</p>
+                    <p class="about__lead" data-i18n="about.lead">Ваше удобство — наша главная цель</p>
+                    <p data-i18n="about.p1">Благодаря оперативности, эффективности и честности транспортно-экспедиторская компания «Get Your Cargo.OD» имеет заслуженную репутацию профессионала в своей области.</p>
+                    <p data-i18n="about.p2">Мы фрахтуем грузы из любого порта мира в любой, с особой ориентацией на Украину. Готовы взяться за решение любой задачи, грамотно управляя проектом за счёт отточенных навыков и богатого опыта.</p>
                     <div class="about__features">
                         <div class="about__feature">
                             <div class="about__feature-icon">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                             </div>
                             <div>
-                                <h4>Оперативность</h4>
-                                <p>Быстрая обработка заказов и доставка в кратчайшие сроки</p>
+                                <h4 data-i18n="about.f1.title">Оперативность</h4>
+                                <p data-i18n="about.f1.text">Быстрая обработка заказов и доставка в кратчайшие сроки</p>
                             </div>
                         </div>
                         <div class="about__feature">
@@ -112,8 +123,8 @@
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                             </div>
                             <div>
-                                <h4>Надёжность</h4>
-                                <p>Гарантия сохранности груза на всех этапах перевозки</p>
+                                <h4 data-i18n="about.f2.title">Надёжность</h4>
+                                <p data-i18n="about.f2.text">Гарантия сохранности груза на всех этапах перевозки</p>
                             </div>
                         </div>
                         <div class="about__feature">
@@ -121,8 +132,8 @@
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                             </div>
                             <div>
-                                <h4>Прозрачность</h4>
-                                <p>Честные цены и полная информация о статусе доставки</p>
+                                <h4 data-i18n="about.f3.title">Прозрачность</h4>
+                                <p data-i18n="about.f3.text">Честные цены и полная информация о статусе доставки</p>
                             </div>
                         </div>
                     </div>
@@ -132,140 +143,367 @@
                         <div class="about__card-icon">
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </div>
-                        <h3>С самого открытия</h3>
-                        <p>компания славится высоким качеством услуг, эффективностью и профессионализмом сотрудников</p>
+                        <h3 data-i18n="about.card1.title">С самого открытия</h3>
+                        <p data-i18n="about.card1.text">компания славится высоким качеством услуг, эффективностью и профессионализмом сотрудников</p>
                     </div>
                     <div class="about__card about__card--accent">
                         <div class="about__card-number">100%</div>
-                        <p>Результат нашей работы не только удовлетворит, но и превзойдёт ваши ожидания</p>
+                        <p data-i18n="about.card2.text">Результат нашей работы не только удовлетворит, но и превзойдёт ваши ожидания</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services -->
     <section class="services" id="services">
         <div class="container">
             <div class="section-header section-header--center">
-                <span class="section-tag">Что мы предлагаем</span>
-                <h2 class="section-title">Наши <span class="accent">услуги</span></h2>
-                <p class="section-desc">Удовлетворим ваши потребности — полный спектр транспортно-экспедиторских услуг</p>
+                <span class="section-tag" data-i18n="services.tag">Что мы предлагаем</span>
+                <h2 class="section-title" data-i18n-html="services.title">Наши <span class="accent">услуги</span></h2>
+                <p class="section-desc" data-i18n="services.desc">Полный спектр транспортно-экспедиторских услуг — от морского фрахта до доставки до склада</p>
             </div>
             <div class="services__grid">
-                <div class="services__card" data-aos="fade-up">
+                <div class="services__card">
+                    <div class="services__card-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M2 20L6 4M6 4H14L18 20M6 4L4.5 12H13.5M22 8L20 20M22 8H15L13.5 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3 class="services__card-title" data-i18n="services.s1.title">Морской фрахт</h3>
+                    <p class="services__card-text" data-i18n="services.s1.text">Фрахтование контейнерных и генеральных грузов из любого порта мира в любой. Работаем с ведущими морскими линиями.</p>
+                    <div class="services__card-tag" data-i18n="services.s1.tag">Весь мир</div>
+                </div>
+                <div class="services__card">
                     <div class="services__card-icon">
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M21 10C21 17 12 23 12 23C12 23 3 17 3 10C3 5.02944 7.02944 1 12 1C16.9706 1 21 5.02944 21 10Z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/></svg>
                     </div>
-                    <h3 class="services__card-title">Экспедирование в портах</h3>
-                    <p class="services__card-text">Полное экспедирование грузов в портах Констанции, Румыния. Профессиональное сопровождение на каждом этапе.</p>
-                    <div class="services__card-tag">Румыния</div>
+                    <h3 class="services__card-title" data-i18n="services.s2.title">Экспедирование в портах</h3>
+                    <p class="services__card-text" data-i18n="services.s2.text">Полное экспедирование грузов в портах Констанции, Румыния. Профессиональное сопровождение на каждом этапе.</p>
+                    <div class="services__card-tag" data-i18n="services.s2.tag">Румыния</div>
                 </div>
-                <div class="services__card" data-aos="fade-up" data-aos-delay="100">
+                <div class="services__card">
                     <div class="services__card-icon">
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M9 5H7C5.89543 5 5 5.89543 5 7V19C5 20.1046 5.89543 21 7 21H17C18.1046 21 19 20.1046 19 19V7C19 5.89543 18.1046 5 17 5H15M9 5C9 6.10457 9.89543 7 11 7H13C14.1046 7 15 6.10457 15 5M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5M12 12H15M12 16H15M9 12H9.01M9 16H9.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
-                    <h3 class="services__card-title">Транзитные декларации</h3>
-                    <p class="services__card-text">Составление и оформление транзитных деклараций для грузов, следующих в Украину. Быстро и без ошибок.</p>
-                    <div class="services__card-tag">Румыния → Украина</div>
+                    <h3 class="services__card-title" data-i18n="services.s3.title">Транзитные декларации</h3>
+                    <p class="services__card-text" data-i18n="services.s3.text">Составление и оформление транзитных деклараций для грузов, следующих в Украину. Быстро и без ошибок.</p>
+                    <div class="services__card-tag" data-i18n="services.s3.tag">Румыния → Украина</div>
                 </div>
-                <div class="services__card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="services__card-icon">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M1 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.70711 15.2929C4.07714 15.9229 4.52331 17 5.41421 17H17M17 17C15.8954 17 15 17.8954 15 19C15 20.1046 15.8954 21 17 21C18.1046 21 19 20.1046 19 19C19 17.8954 18.1046 17 17 17ZM9 19C9 20.1046 8.10457 21 7 21C5.89543 21 5 20.1046 5 19C5 17.8954 5.89543 17 7 17C8.10457 17 9 17.8954 9 19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </div>
-                    <h3 class="services__card-title">Транспортные услуги</h3>
-                    <p class="services__card-text">Полный цикл перевозки грузов из Румынии в Украину. Автомобильные и мультимодальные перевозки.</p>
-                    <div class="services__card-tag">Международные</div>
-                </div>
-                <div class="services__card" data-aos="fade-up" data-aos-delay="300">
+                <div class="services__card">
                     <div class="services__card-icon">
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M9 12L11 14L15 10M7.835 4.697C8.547 4.633 9.227 4.363 9.787 3.921L11.143 2.831C11.636 2.44 12.364 2.44 12.857 2.831L14.213 3.921C14.773 4.363 15.453 4.633 16.165 4.697L17.877 4.853C18.509 4.91 19 5.439 19 6.074V7.835C19 8.547 19.27 9.227 19.712 9.787L20.802 11.143C21.193 11.636 21.193 12.364 20.802 12.857L19.712 14.213C19.27 14.773 19 15.453 19 16.165V17.877C19 18.509 18.509 19 17.877 19.057L16.165 19.213C15.453 19.277 14.773 19.547 14.213 19.989L12.857 21.079C12.364 21.47 11.636 21.47 11.143 21.079L9.787 19.989C9.227 19.547 8.547 19.277 7.835 19.213L6.123 19.057C5.491 19 5 18.509 5 17.877V16.165C5 15.453 4.73 14.773 4.288 14.213L3.198 12.857C2.807 12.364 2.807 11.636 3.198 11.143L4.288 9.787C4.73 9.227 5 8.547 5 7.835V6.074C5 5.439 5.491 4.91 6.123 4.853L7.835 4.697Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
-                    <h3 class="services__card-title">Брокерские услуги</h3>
-                    <p class="services__card-text">Предоставляем брокерские услуги на территории Украины. Таможенное оформление любой сложности.</p>
-                    <div class="services__card-tag">Украина</div>
+                    <h3 class="services__card-title" data-i18n="services.s4.title">Брокерские услуги</h3>
+                    <p class="services__card-text" data-i18n="services.s4.text">Таможенное оформление любой сложности на территории Украины. Брокерские услуги «под ключ».</p>
+                    <div class="services__card-tag" data-i18n="services.s4.tag">Украина</div>
                 </div>
-                <div class="services__card" data-aos="fade-up" data-aos-delay="400">
+                <div class="services__card">
                     <div class="services__card-icon">
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none"><path d="M20 7L12 3L4 7M20 7L12 11M20 7V17L12 21M12 11L4 7M12 11V21M4 7V17L12 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
-                    <h3 class="services__card-title">Доставка до склада</h3>
-                    <p class="services__card-text">Комплекс услуг по доставке груза из порта Констанция до вашего склада в Украине. «Под ключ».</p>
-                    <div class="services__card-tag">Порт → Склад</div>
+                    <h3 class="services__card-title" data-i18n="services.s5.title">Доставка до склада</h3>
+                    <p class="services__card-text" data-i18n="services.s5.text">Полный комплекс услуг по доставке груза из любого порта мира до вашего склада в Украине. «Под ключ».</p>
+                    <div class="services__card-tag" data-i18n="services.s5.tag">Порт → Склад</div>
                 </div>
-                <div class="services__card services__card--cta" data-aos="fade-up" data-aos-delay="500">
+                <div class="services__card services__card--cta">
                     <div class="services__card-cta-inner">
-                        <h3>Нужна консультация?</h3>
-                        <p>Свяжитесь с нами и мы подберём оптимальное решение для вашего груза</p>
-                        <a href="#contact" class="btn btn--primary btn--sm">Написать нам</a>
+                        <h3 data-i18n="services.cta.title">Нужна консультация?</h3>
+                        <p data-i18n="services.cta.text">Свяжитесь с нами и мы подберём оптимальное решение для вашего груза</p>
+                        <a href="#contact" class="btn btn--primary btn--sm" data-i18n="services.cta.btn">Написать нам</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Geography Section -->
-    <section class="geography" id="geography">
+    <!-- Containers -->
+    <section class="containers" id="containers">
         <div class="container">
             <div class="section-header section-header--center">
-                <span class="section-tag">Где мы работаем</span>
-                <h2 class="section-title">География <span class="accent">деятельности</span></h2>
+                <span class="section-tag" data-i18n="containers.tag">Типы контейнеров</span>
+                <h2 class="section-title" data-i18n-html="containers.title">Выберите <span class="accent">контейнер</span></h2>
+                <p class="section-desc" data-i18n="containers.desc">Подберём оптимальный тип контейнера под ваш груз</p>
             </div>
-            <div class="geography__grid">
-                <div class="geography__card">
-                    <div class="geography__card-flag">🇷🇴</div>
-                    <h3>Румыния</h3>
-                    <p class="geography__card-subtitle">Всегда готовы</p>
-                    <p>Наша основная деятельность — экспедирование в портах Констанции, составление транзитных деклараций в Украину, транспортные услуги из Румынии в Украину.</p>
+            <div class="containers__grid">
+                <div class="containers__card">
+                    <div class="containers__card-visual">
+                        <svg viewBox="0 0 200 100" class="containers__svg">
+                            <rect x="10" y="20" width="120" height="70" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <line x1="40" y1="20" x2="40" y2="90" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                            <line x1="70" y1="20" x2="70" y2="90" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                            <line x1="100" y1="20" x2="100" y2="90" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                            <text x="155" y="60" fill="currentColor" font-size="28" font-weight="800">20'</text>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="containers.c1.title">20' Standard</h3>
+                    <div class="containers__specs">
+                        <div class="containers__spec">
+                            <span class="containers__spec-label" data-i18n="containers.size">Размеры</span>
+                            <span class="containers__spec-value">5.9 × 2.35 × 2.39 м</span>
+                        </div>
+                        <div class="containers__spec">
+                            <span class="containers__spec-label" data-i18n="containers.volume">Объём</span>
+                            <span class="containers__spec-value">33.2 м³</span>
+                        </div>
+                        <div class="containers__spec">
+                            <span class="containers__spec-label" data-i18n="containers.payload">Загрузка</span>
+                            <span class="containers__spec-value">28 200 кг</span>
+                        </div>
+                    </div>
+                    <p class="containers__card-desc" data-i18n="containers.c1.desc">Универсальный контейнер для стандартных грузов. Оптимальный выбор для небольших партий.</p>
                 </div>
-                <div class="geography__card">
-                    <div class="geography__card-flag">🇺🇦</div>
-                    <h3>Украина</h3>
-                    <p class="geography__card-subtitle">Внимание к деталям</p>
-                    <p>Брокерские услуги на территории Украины. Полный комплекс по доставке вашего груза из порта Констанция до вашего склада в Украине.</p>
+                <div class="containers__card">
+                    <div class="containers__card-visual">
+                        <svg viewBox="0 0 200 100" class="containers__svg">
+                            <rect x="5" y="20" width="150" height="70" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <line x1="35" y1="20" x2="35" y2="90" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                            <line x1="65" y1="20" x2="65" y2="90" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                            <line x1="95" y1="20" x2="95" y2="90" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                            <line x1="125" y1="20" x2="125" y2="90" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                            <text x="168" y="60" fill="currentColor" font-size="28" font-weight="800">40'</text>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="containers.c2.title">40' Standard</h3>
+                    <div class="containers__specs">
+                        <div class="containers__spec">
+                            <span class="containers__spec-label" data-i18n="containers.size">Размеры</span>
+                            <span class="containers__spec-value">12.03 × 2.35 × 2.39 м</span>
+                        </div>
+                        <div class="containers__spec">
+                            <span class="containers__spec-label" data-i18n="containers.volume">Объём</span>
+                            <span class="containers__spec-value">67.7 м³</span>
+                        </div>
+                        <div class="containers__spec">
+                            <span class="containers__spec-label" data-i18n="containers.payload">Загрузка</span>
+                            <span class="containers__spec-value">28 750 кг</span>
+                        </div>
+                    </div>
+                    <p class="containers__card-desc" data-i18n="containers.c2.desc">Стандартный большой контейнер для крупных партий. Самый популярный тип в мировой торговле.</p>
                 </div>
-                <div class="geography__card">
-                    <div class="geography__card-flag">🇰🇿</div>
-                    <h3>Казахстан</h3>
-                    <p class="geography__card-subtitle">Расширяем горизонты</p>
-                    <p>Организация и сопровождение грузоперевозок в направлении Казахстана. Индивидуальный подход к каждому клиенту.</p>
+                <div class="containers__card">
+                    <div class="containers__card-visual">
+                        <svg viewBox="0 0 200 100" class="containers__svg">
+                            <rect x="5" y="10" width="150" height="80" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <line x1="35" y1="10" x2="35" y2="90" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                            <line x1="65" y1="10" x2="65" y2="90" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                            <line x1="95" y1="10" x2="95" y2="90" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                            <line x1="125" y1="10" x2="125" y2="90" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                            <text x="165" y="55" fill="currentColor" font-size="22" font-weight="800">40'</text>
+                            <text x="165" y="75" fill="currentColor" font-size="14" font-weight="600">HC</text>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="containers.c3.title">40' High Cube</h3>
+                    <div class="containers__specs">
+                        <div class="containers__spec">
+                            <span class="containers__spec-label" data-i18n="containers.size">Размеры</span>
+                            <span class="containers__spec-value">12.03 × 2.35 × 2.69 м</span>
+                        </div>
+                        <div class="containers__spec">
+                            <span class="containers__spec-label" data-i18n="containers.volume">Объём</span>
+                            <span class="containers__spec-value">76.3 м³</span>
+                        </div>
+                        <div class="containers__spec">
+                            <span class="containers__spec-label" data-i18n="containers.payload">Загрузка</span>
+                            <span class="containers__spec-value">28 600 кг</span>
+                        </div>
+                    </div>
+                    <p class="containers__card-desc" data-i18n="containers.c3.desc">Увеличенная высота (+30 см). Идеален для объёмных и лёгких грузов.</p>
                 </div>
-            </div>
-            <div class="geography__countries">
-                <p class="geography__countries-label">Страны присутствия:</p>
-                <div class="geography__flags">
-                    <span class="geography__flag" title="Франция">🇫🇷</span>
-                    <span class="geography__flag" title="Испания">🇪🇸</span>
-                    <span class="geography__flag" title="Казахстан">🇰🇿</span>
-                    <span class="geography__flag" title="Великобритания">🇬🇧</span>
-                    <span class="geography__flag" title="Чехия">🇨🇿</span>
-                    <span class="geography__flag" title="Украина">🇺🇦</span>
-                    <span class="geography__flag" title="Румыния">🇷🇴</span>
+                <div class="containers__card">
+                    <div class="containers__card-visual">
+                        <svg viewBox="0 0 200 100" class="containers__svg containers__svg--reefer">
+                            <rect x="5" y="20" width="150" height="70" rx="3" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <line x1="35" y1="20" x2="35" y2="90" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                            <line x1="65" y1="20" x2="65" y2="90" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                            <line x1="95" y1="20" x2="95" y2="90" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                            <line x1="125" y1="20" x2="125" y2="90" stroke="currentColor" stroke-width="1" opacity="0.3"/>
+                            <circle cx="175" cy="45" r="15" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <path d="M175 35 L175 55 M165 45 L185 45" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3 data-i18n="containers.c4.title">Рефрижератор</h3>
+                    <div class="containers__specs">
+                        <div class="containers__spec">
+                            <span class="containers__spec-label" data-i18n="containers.temp">Температура</span>
+                            <span class="containers__spec-value">-25°C … +25°C</span>
+                        </div>
+                        <div class="containers__spec">
+                            <span class="containers__spec-label" data-i18n="containers.volume">Объём</span>
+                            <span class="containers__spec-value">59.3 м³</span>
+                        </div>
+                        <div class="containers__spec">
+                            <span class="containers__spec-label" data-i18n="containers.payload">Загрузка</span>
+                            <span class="containers__spec-value">27 400 кг</span>
+                        </div>
+                    </div>
+                    <p class="containers__card-desc" data-i18n="containers.c4.desc">Контейнер с климат-контролем. Для продуктов питания, медикаментов и других температурочувствительных грузов.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
+    <!-- Geography -->
+    <section class="geography" id="geography">
+        <div class="container">
+            <div class="section-header section-header--center">
+                <span class="section-tag" data-i18n="geo.tag">Весь мир</span>
+                <h2 class="section-title" data-i18n-html="geo.title">География <span class="accent">деятельности</span></h2>
+                <p class="section-desc" data-i18n="geo.desc">Фрахтуем грузы из любого порта мира в любой с ориентацией на Украину</p>
+            </div>
+            <div class="geography__map-wrapper">
+                <svg class="geography__map" viewBox="0 0 900 450" xmlns="http://www.w3.org/2000/svg">
+                    <!-- North America -->
+                    <path class="geography__continent" d="M 80,95 C 95,60 140,45 185,55 C 205,60 220,75 225,95 C 228,115 220,135 205,155 C 185,178 168,190 150,195 C 130,200 115,195 105,182 C 90,168 78,148 72,128 C 66,108 68,100 80,95 Z"/>
+                    <!-- Central America -->
+                    <path class="geography__continent" d="M 155,195 C 160,192 170,195 175,200 C 178,205 175,212 170,215 C 165,218 158,215 155,210 C 152,205 153,198 155,195 Z"/>
+                    <!-- South America -->
+                    <path class="geography__continent" d="M 175,220 C 188,210 210,208 222,218 C 232,228 238,250 240,275 C 242,300 238,325 228,348 C 218,365 205,375 190,375 C 178,372 168,360 162,340 C 155,315 152,285 155,258 C 157,238 165,228 175,220 Z"/>
+                    <!-- Europe -->
+                    <path class="geography__continent" d="M 420,58 C 438,48 468,45 492,52 C 510,58 525,68 528,82 C 530,95 522,108 510,115 C 495,122 478,125 462,122 C 445,118 432,108 425,95 C 418,82 415,68 420,58 Z"/>
+                    <!-- Africa -->
+                    <path class="geography__continent" d="M 435,140 C 455,130 482,125 505,135 C 525,145 540,165 548,192 C 555,225 552,262 542,295 C 530,325 515,342 495,348 C 478,352 460,345 448,328 C 435,308 428,280 425,250 C 422,218 425,185 428,162 C 430,150 432,145 435,140 Z"/>
+                    <!-- Asia -->
+                    <path class="geography__continent" d="M 535,42 C 568,32 610,25 658,30 C 700,35 742,48 775,62 C 800,75 818,92 825,112 C 830,130 822,148 808,160 C 788,175 762,182 732,185 C 700,188 665,182 635,172 C 608,162 585,150 565,135 C 548,122 535,108 530,92 C 525,75 528,55 535,42 Z"/>
+                    <!-- South-East Asia islands -->
+                    <path class="geography__continent" d="M 750,205 C 758,198 770,195 778,200 C 785,205 788,215 785,222 C 782,228 775,230 768,228 C 760,225 755,218 752,212 C 750,208 750,206 750,205 Z"/>
+                    <path class="geography__continent" d="M 795,210 C 802,205 815,208 820,215 C 825,222 822,232 815,235 C 808,238 798,235 795,228 C 792,220 793,213 795,210 Z"/>
+                    <!-- Australia -->
+                    <path class="geography__continent" d="M 760,290 C 778,278 808,272 830,280 C 848,288 858,305 860,322 C 862,338 852,352 838,358 C 820,365 800,362 785,352 C 770,340 762,325 758,310 C 756,298 758,293 760,290 Z"/>
+
+                    <!-- Ukraine highlight -->
+                    <circle class="geography__ukraine-glow" cx="528" cy="88" r="18"/>
+                    <circle class="geography__ukraine-pulse" cx="528" cy="88" r="8"/>
+                    <circle class="geography__ukraine-dot" cx="528" cy="88" r="5"/>
+
+                    <!-- Connection lines to Ukraine -->
+                    <path class="geography__route" d="M 150,120 Q 340,50 528,88"/>
+                    <path class="geography__route geography__route--2" d="M 200,290 Q 370,150 528,88"/>
+                    <path class="geography__route geography__route--3" d="M 480,280 Q 510,180 528,88"/>
+                    <path class="geography__route geography__route--4" d="M 700,100 Q 620,60 528,88"/>
+                    <path class="geography__route geography__route--5" d="M 810,310 Q 680,180 528,88"/>
+                    <path class="geography__route geography__route--6" d="M 775,210 Q 660,140 528,88"/>
+
+                    <!-- Port dots -->
+                    <circle class="geography__port" cx="150" cy="120" r="3"/>
+                    <circle class="geography__port" cx="200" cy="290" r="3"/>
+                    <circle class="geography__port" cx="480" cy="280" r="3"/>
+                    <circle class="geography__port" cx="700" cy="100" r="3"/>
+                    <circle class="geography__port" cx="810" cy="310" r="3"/>
+                    <circle class="geography__port" cx="775" cy="210" r="3"/>
+                </svg>
+                <div class="geography__map-label" data-i18n="geo.label">Украина</div>
+            </div>
+            <div class="geography__info">
+                <div class="geography__info-card">
+                    <div class="geography__info-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3 data-i18n="geo.i1.title">Любой порт мира</h3>
+                    <p data-i18n="geo.i1.text">Организуем фрахт из любого порта мира. Азия, Европа, Америка, Африка — без ограничений по географии.</p>
+                </div>
+                <div class="geography__info-card">
+                    <div class="geography__info-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l5.447 2.724A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3 data-i18n="geo.i2.title">Фокус на Украину</h3>
+                    <p data-i18n="geo.i2.text">Основная специализация — доставка грузов в Украину. Брокерское обслуживание, таможенное оформление, доставка до склада.</p>
+                </div>
+                <div class="geography__info-card">
+                    <div class="geography__info-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3 data-i18n="geo.i3.title">Работа без выходных</h3>
+                    <p data-i18n="geo.i3.text">Оперативная обработка запросов 7 дней в неделю. Всегда на связи для решения любых вопросов по вашей перевозке.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header section-header--center">
+                <span class="section-tag" data-i18n="faq.tag">Вопросы и ответы</span>
+                <h2 class="section-title" data-i18n-html="faq.title">Частые <span class="accent">вопросы</span></h2>
+            </div>
+            <div class="faq__list">
+                <div class="faq__item">
+                    <button class="faq__question" aria-expanded="false">
+                        <span data-i18n="faq.q1">Какие грузы вы перевозите?</span>
+                        <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p data-i18n="faq.a1">Мы перевозим контейнерные и генеральные грузы любого типа: промышленное оборудование, сырьё, товары народного потребления, продукты питания (в рефрижераторных контейнерах) и многое другое. Исключение — запрещённые к перевозке грузы по международным нормам.</p>
+                    </div>
+                </div>
+                <div class="faq__item">
+                    <button class="faq__question" aria-expanded="false">
+                        <span data-i18n="faq.q2">Сколько времени занимает доставка?</span>
+                        <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p data-i18n="faq.a2">Сроки зависят от маршрута: из Европы — 5–15 дней, из Азии — 25–40 дней, из Америки — 20–35 дней. Точные сроки рассчитываются индивидуально после уточнения портов отправления и назначения.</p>
+                    </div>
+                </div>
+                <div class="faq__item">
+                    <button class="faq__question" aria-expanded="false">
+                        <span data-i18n="faq.q3">Какие документы нужны для перевозки?</span>
+                        <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p data-i18n="faq.a3">Основные документы: коносамент (Bill of Lading), инвойс, упаковочный лист, сертификат происхождения. В зависимости от типа груза могут потребоваться дополнительные сертификаты. Мы поможем подготовить полный пакет документов.</p>
+                    </div>
+                </div>
+                <div class="faq__item">
+                    <button class="faq__question" aria-expanded="false">
+                        <span data-i18n="faq.q4">Как рассчитывается стоимость фрахта?</span>
+                        <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p data-i18n="faq.a4">Стоимость зависит от маршрута, типа контейнера, объёма и веса груза, а также текущих ставок морских линий. Свяжитесь с нами для получения актуальной котировки — мы подберём лучшее предложение.</p>
+                    </div>
+                </div>
+                <div class="faq__item">
+                    <button class="faq__question" aria-expanded="false">
+                        <span data-i18n="faq.q5">Работаете ли вы с опасными грузами?</span>
+                        <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p data-i18n="faq.a5">Да, мы имеем опыт работы с грузами классов опасности IMO. Для таких перевозок требуются специальные документы и сертификаты. Обратитесь к нам — мы проконсультируем по всем требованиям.</p>
+                    </div>
+                </div>
+                <div class="faq__item">
+                    <button class="faq__question" aria-expanded="false">
+                        <span data-i18n="faq.q6">Осуществляете ли вы доставку «до двери»?</span>
+                        <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="faq__answer">
+                        <p data-i18n="faq.a6">Да, мы предоставляем полный цикл доставки «от двери до двери»: морской фрахт, портовое экспедирование, таможенное оформление, автомобильная доставка до вашего склада в Украине.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
     <section class="cta">
         <div class="container">
             <div class="cta__inner">
                 <div class="cta__content">
-                    <h2 class="cta__title">Готовы доставить ваш груз?</h2>
-                    <p class="cta__text">Обращайтесь, чтобы узнать больше об услугах, которые мы предлагаем. Мы найдём лучшее решение для вас.</p>
+                    <h2 class="cta__title" data-i18n="cta.title">Готовы доставить ваш груз?</h2>
+                    <p class="cta__text" data-i18n="cta.text">Обращайтесь, чтобы узнать больше об услугах, которые мы предлагаем. Мы найдём лучшее решение для вас.</p>
                 </div>
-                <a href="#contact" class="btn btn--white btn--lg">Получить консультацию</a>
+                <a href="#contact" class="btn btn--white btn--lg" data-i18n="cta.btn">Получить консультацию</a>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact -->
     <section class="contact" id="contact">
         <div class="container">
             <div class="section-header section-header--center">
-                <span class="section-tag">Свяжитесь с нами</span>
-                <h2 class="section-title">Контактная <span class="accent">информация</span></h2>
-                <p class="section-desc">Мы всегда на связи — выберите удобный способ</p>
+                <span class="section-tag" data-i18n="contact.tag">Свяжитесь с нами</span>
+                <h2 class="section-title" data-i18n-html="contact.title">Контактная <span class="accent">информация</span></h2>
+                <p class="section-desc" data-i18n="contact.desc">Мы всегда на связи — выберите удобный способ</p>
             </div>
             <div class="contact__grid">
                 <div class="contact__info">
@@ -283,7 +521,7 @@
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 4H9L11 9L8.5 10.5C9.57096 12.6715 11.3285 14.429 13.5 15.5L15 13L20 15V19C20 20.1046 19.1046 21 18 21C9.71573 20.4955 3.50452 14.2843 3 6C3 4.89543 3.89543 4 5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </div>
                         <div class="contact__card-content">
-                            <h4>Румыния 🇷🇴 🇬🇧</h4>
+                            <h4 data-i18n="contact.phone.ro">Румыния</h4>
                             <a href="tel:+40758799858">+40 758 799 858</a>
                         </div>
                     </div>
@@ -292,15 +530,15 @@
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 4H9L11 9L8.5 10.5C9.57096 12.6715 11.3285 14.429 13.5 15.5L15 13L20 15V19C20 20.1046 19.1046 21 18 21C9.71573 20.4955 3.50452 14.2843 3 6C3 4.89543 3.89543 4 5 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                         </div>
                         <div class="contact__card-content">
-                            <h4>Украина 🇺🇦</h4>
+                            <h4 data-i18n="contact.phone.ua">Украина</h4>
                             <a href="tel:+380934890042">+380 93 489 0042</a>
                         </div>
                     </div>
                     <div class="contact__socials">
-                        <h4>Мы в мессенджерах:</h4>
+                        <h4 data-i18n="contact.messengers">Мы в мессенджерах:</h4>
                         <div class="contact__socials-list">
                             <a href="viber://chat?number=%2B40758799858" class="contact__social contact__social--viber" aria-label="Viber" title="Viber">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.008 1.003c-5.266 0-9.564 3.588-9.564 8.005 0 2.444 1.263 4.637 3.249 6.104v2.895l2.793-1.533c.75.21 1.545.324 2.367.324h.155c5.266 0 9.564-3.588 9.564-8.005s-4.298-7.79-8.564-7.79zm.155 1.5c4.695 0 8.064 3.136 8.064 6.29s-3.369 6.505-8.064 6.505a9.3 9.3 0 01-2.108-.244l-.533-.125-1.715.942v-1.766l-.41-.322c-1.72-1.267-2.75-3.162-2.75-5.2 0-3.365 3.368-6.08 7.516-6.08zm-1.118 3.497c-.414 0-.834.13-1.152.416-.474.42-.643 1.023-.5 1.77.378 1.954 1.293 3.702 2.72 5.043a8.96 8.96 0 004.21 2.266c.74.137 1.36-.04 1.793-.514.295-.322.438-.746.438-1.162 0-.236-.087-.397-.262-.478l-1.81-.866c-.24-.114-.48-.044-.637.128l-.464.51c-.197.217-.5.268-.76.14a6.67 6.67 0 01-2.5-2.098 6.63 6.63 0 01-.979-2.778c-.05-.296.066-.575.303-.72l.594-.37c.21-.13.31-.367.228-.607l-.67-1.88c-.074-.206-.254-.3-.463-.3h-.09z"/></svg>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.008 1.003c-5.266 0-9.564 3.588-9.564 8.005 0 2.444 1.263 4.637 3.249 6.104v2.895l2.793-1.533c.75.21 1.545.324 2.367.324h.155c5.266 0 9.564-3.588 9.564-8.005s-4.298-7.79-8.564-7.79z"/></svg>
                             </a>
                             <a href="https://t.me/+40758799858" class="contact__social contact__social--telegram" aria-label="Telegram" title="Telegram">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 1 0 24 12.056A12.014 12.014 0 0 0 11.944 0Zm5.8 8.144-1.829 8.609c-.137.648-.502.806-.998.502l-2.8-2.064-1.349 1.298c-.15.15-.275.275-.564.275l.2-2.85 5.2-4.699c.226-.2-.05-.312-.35-.112l-6.424 4.046-2.768-.864c-.6-.188-.614-.6.126-.888l10.824-4.174c.5-.182.938.122.774.888Z"/></svg>
@@ -313,20 +551,20 @@
                 </div>
                 <div class="contact__form-wrapper">
                     <form class="contact__form" id="contactForm">
-                        <h3 class="contact__form-title">Отправить сообщение</h3>
+                        <h3 class="contact__form-title" data-i18n="contact.form.title">Отправить сообщение</h3>
                         <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Ваше имя" required>
+                            <input type="text" id="name" name="name" data-i18n-placeholder="contact.form.name" placeholder="Ваше имя" required>
                         </div>
                         <div class="form-group">
                             <input type="email" id="email" name="email" placeholder="Email" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" id="phone" name="phone" placeholder="Телефон">
+                            <input type="tel" id="phone" name="phone" data-i18n-placeholder="contact.form.phone" placeholder="Телефон">
                         </div>
                         <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Ваше сообщение" rows="4" required></textarea>
+                            <textarea id="message" name="message" data-i18n-placeholder="contact.form.message" placeholder="Ваше сообщение" rows="4" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn--primary btn--full">Отправить</button>
+                        <button type="submit" class="btn btn--primary btn--full" data-i18n="contact.form.submit">Отправить</button>
                     </form>
                 </div>
             </div>
@@ -342,19 +580,19 @@
                         <img src="assets/images/logo.png" alt="Get Your Cargo.OD" class="footer__logo-img">
                         <span>Get Your Cargo<span class="accent">.OD</span></span>
                     </a>
-                    <p class="footer__desc">Транспортно-экспедиторская компания. Ваше удобство — наша главная цель.</p>
+                    <p class="footer__desc" data-i18n="footer.desc">Международная транспортно-экспедиторская компания. Морской фрахт из любого порта мира.</p>
                 </div>
                 <div class="footer__links">
-                    <h4>Навигация</h4>
+                    <h4 data-i18n="footer.nav">Навигация</h4>
                     <ul>
-                        <li><a href="#hero">Главная</a></li>
-                        <li><a href="#about">О нас</a></li>
-                        <li><a href="#services">Услуги</a></li>
-                        <li><a href="#contact">Контакты</a></li>
+                        <li><a href="#hero" data-i18n="nav.home">Главная</a></li>
+                        <li><a href="#about" data-i18n="nav.about">О нас</a></li>
+                        <li><a href="#services" data-i18n="nav.services">Услуги</a></li>
+                        <li><a href="#contact" data-i18n="nav.contact">Контакты</a></li>
                     </ul>
                 </div>
                 <div class="footer__contact">
-                    <h4>Контакты</h4>
+                    <h4 data-i18n="nav.contact">Контакты</h4>
                     <ul>
                         <li><a href="mailto:GetYourCargo.od@gmail.com">GetYourCargo.od@gmail.com</a></li>
                         <li><a href="tel:+40758799858">+40 758 799 858</a></li>
@@ -363,16 +601,16 @@
                 </div>
             </div>
             <div class="footer__bottom">
-                <p>&copy; 2022–2026 Get Your Cargo.OD. Все права защищены.</p>
+                <p data-i18n="footer.copy">&copy; 2022–2026 Get Your Cargo.OD. Все права защищены.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Back to top -->
     <button class="back-to-top" id="backToTop" aria-label="Наверх">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 19V5M5 12L12 5L19 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
 
+    <script src="assets/js/i18n.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>

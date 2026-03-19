@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
     initHeader();
     initMobileMenu();
     initLangSwitcher();
@@ -7,26 +8,37 @@ document.addEventListener('DOMContentLoaded', () => {
     initCountUp();
     initRevealAnimations();
     initBackToTop();
+    initFAQ();
     initContactForm();
 });
 
 /* ========================================
-   Header scroll effect
+   Theme (dark/light)
+   ======================================== */
+function initTheme() {
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = saved || (prefersDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+
+    document.querySelectorAll('#themeToggle, #themeToggleMobile').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+        });
+    });
+}
+
+/* ========================================
+   Header scroll
    ======================================== */
 function initHeader() {
     const header = document.getElementById('header');
-    let lastScroll = 0;
-
     function onScroll() {
-        const scrollY = window.scrollY;
-        if (scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-        lastScroll = scrollY;
+        header.classList.toggle('scrolled', window.scrollY > 50);
     }
-
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 }
@@ -37,13 +49,11 @@ function initHeader() {
 function initMobileMenu() {
     const burger = document.getElementById('burger');
     const nav = document.getElementById('nav');
-
     burger.addEventListener('click', () => {
         burger.classList.toggle('active');
         nav.classList.toggle('open');
         document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
     });
-
     nav.querySelectorAll('.header__nav-link').forEach(link => {
         link.addEventListener('click', () => {
             burger.classList.remove('active');
@@ -59,8 +69,10 @@ function initMobileMenu() {
 function initLangSwitcher() {
     const btn = document.getElementById('langBtn');
     const dropdown = document.getElementById('langDropdown');
-
     if (!btn || !dropdown) return;
+
+    const saved = localStorage.getItem('lang') || 'ru';
+    setLanguage(saved);
 
     btn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -70,15 +82,41 @@ function initLangSwitcher() {
     dropdown.querySelectorAll('.header__lang-option').forEach(option => {
         option.addEventListener('click', () => {
             const lang = option.dataset.lang;
-            dropdown.querySelectorAll('.header__lang-option').forEach(o => o.classList.remove('active'));
-            option.classList.add('active');
-            btn.querySelector('.header__lang-current').textContent = lang.toUpperCase();
+            setLanguage(lang);
+            localStorage.setItem('lang', lang);
             dropdown.classList.remove('open');
         });
     });
 
-    document.addEventListener('click', () => {
-        dropdown.classList.remove('open');
+    document.addEventListener('click', () => dropdown.classList.remove('open'));
+}
+
+function setLanguage(lang) {
+    if (!translations[lang]) return;
+    const t = translations[lang];
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) el.textContent = t[key];
+    });
+
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (t[key]) el.innerHTML = t[key];
+    });
+
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (t[key]) el.placeholder = t[key];
+    });
+
+    document.documentElement.lang = lang === 'uk' ? 'uk' : lang;
+
+    const btn = document.getElementById('langBtn');
+    if (btn) btn.querySelector('.header__lang-current').textContent = lang.toUpperCase();
+
+    document.querySelectorAll('.header__lang-option').forEach(o => {
+        o.classList.toggle('active', o.dataset.lang === lang);
     });
 }
 
@@ -90,7 +128,6 @@ function initSmoothScroll() {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
             if (href === '#') return;
-
             const target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
@@ -101,31 +138,24 @@ function initSmoothScroll() {
 }
 
 /* ========================================
-   Scroll spy for active nav links
+   Scroll spy
    ======================================== */
 function initScrollSpy() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.header__nav-link[data-section]');
-
     function onScroll() {
         const scrollY = window.scrollY + 200;
-
         sections.forEach(section => {
             const top = section.offsetTop;
             const height = section.offsetHeight;
             const id = section.getAttribute('id');
-
             if (scrollY >= top && scrollY < top + height) {
                 navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.dataset.section === id) {
-                        link.classList.add('active');
-                    }
+                    link.classList.toggle('active', link.dataset.section === id);
                 });
             }
         });
     }
-
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 }
@@ -136,119 +166,114 @@ function initScrollSpy() {
 function initCountUp() {
     const counters = document.querySelectorAll('.hero__stat-number[data-count]');
     let animated = false;
-
-    function animateCounters() {
+    function animate() {
         if (animated) return;
         animated = true;
-
         counters.forEach(counter => {
             const target = parseInt(counter.dataset.count, 10);
             const duration = 2000;
-            const step = Math.ceil(target / (duration / 16));
+            const step = Math.max(1, Math.ceil(target / (duration / 16)));
             let current = 0;
-
             const timer = setInterval(() => {
                 current += step;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
+                if (current >= target) { current = target; clearInterval(timer); }
                 counter.textContent = current;
             }, 16);
         });
     }
-
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateCounters();
-                observer.disconnect();
-            }
+            if (entry.isIntersecting) { animate(); observer.disconnect(); }
         });
     }, { threshold: 0.5 });
-
-    const statsContainer = document.querySelector('.hero__stats');
-    if (statsContainer) {
-        observer.observe(statsContainer);
-    }
+    const stats = document.querySelector('.hero__stats');
+    if (stats) observer.observe(stats);
 }
 
 /* ========================================
    Reveal on scroll
    ======================================== */
 function initRevealAnimations() {
-    const revealSelectors = [
-        '.about__card',
-        '.about__feature',
-        '.services__card',
-        '.geography__card',
-        '.geography__countries',
-        '.contact__card',
-        '.contact__form-wrapper',
-        '.cta__inner',
-        '.section-header'
+    const selectors = [
+        '.about__card', '.about__feature', '.services__card',
+        '.containers__card', '.geography__info-card', '.geography__map-wrapper',
+        '.contact__card', '.contact__form-wrapper', '.cta__inner',
+        '.section-header', '.faq__item'
     ];
-
-    const elements = document.querySelectorAll(revealSelectors.join(','));
-
+    const elements = document.querySelectorAll(selectors.join(','));
     elements.forEach(el => el.classList.add('reveal'));
-
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
+        entries.forEach((entry, i) => {
             if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.classList.add('visible');
-                }, index * 80);
+                setTimeout(() => entry.target.classList.add('visible'), i * 60);
                 observer.unobserve(entry.target);
             }
         });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    });
-
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
     elements.forEach(el => observer.observe(el));
 }
 
 /* ========================================
-   Back to top button
+   Back to top
    ======================================== */
 function initBackToTop() {
     const btn = document.getElementById('backToTop');
-
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 600) {
-            btn.classList.add('visible');
-        } else {
-            btn.classList.remove('visible');
-        }
+        btn.classList.toggle('visible', window.scrollY > 600);
     }, { passive: true });
-
     btn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
 
 /* ========================================
-   Contact form (visual feedback only)
+   FAQ Accordion
+   ======================================== */
+function initFAQ() {
+    document.querySelectorAll('.faq__question').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.faq__item');
+            const answer = item.querySelector('.faq__answer');
+            const isOpen = item.classList.contains('active');
+
+            document.querySelectorAll('.faq__item.active').forEach(openItem => {
+                if (openItem !== item) {
+                    openItem.classList.remove('active');
+                    openItem.querySelector('.faq__question').setAttribute('aria-expanded', 'false');
+                    openItem.querySelector('.faq__answer').style.maxHeight = '0';
+                }
+            });
+
+            if (isOpen) {
+                item.classList.remove('active');
+                btn.setAttribute('aria-expanded', 'false');
+                answer.style.maxHeight = '0';
+            } else {
+                item.classList.add('active');
+                btn.setAttribute('aria-expanded', 'true');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        });
+    });
+}
+
+/* ========================================
+   Contact form
    ======================================== */
 function initContactForm() {
     const form = document.getElementById('contactForm');
     if (!form) return;
-
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-
         const btn = form.querySelector('button[type="submit"]');
-        const originalText = btn.textContent;
-        btn.textContent = 'Отправлено!';
+        const original = btn.textContent;
+        btn.textContent = '✓';
         btn.style.background = '#2d5e43';
         btn.style.borderColor = '#2d5e43';
         btn.style.color = '#fff';
         btn.disabled = true;
-
         setTimeout(() => {
-            btn.textContent = originalText;
+            btn.textContent = original;
             btn.style.background = '';
             btn.style.borderColor = '';
             btn.style.color = '';
