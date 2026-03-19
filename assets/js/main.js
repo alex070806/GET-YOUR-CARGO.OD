@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     initTheme();
+    initSplash();
     initHeader();
     initMobileMenu();
     initLangSwitcher();
@@ -11,6 +12,22 @@ document.addEventListener('DOMContentLoaded', function() {
     initFAQ();
     initContactForm();
 });
+
+/* ========================================
+   Splash screen
+   ======================================== */
+function initSplash() {
+    var splash = document.getElementById('splash');
+    if (!splash) return;
+    document.body.style.overflow = 'hidden';
+    setTimeout(function() {
+        splash.classList.add('hidden');
+        document.body.style.overflow = '';
+    }, 2200);
+    setTimeout(function() {
+        splash.parentNode.removeChild(splash);
+    }, 2800);
+}
 
 /* ========================================
    Theme (dark/light)

@@ -120,6 +120,193 @@ body {
     overflow-x: hidden;
 }
 
+/* ========================================
+   Splash / Loader
+   ======================================== */
+.splash {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0f1923 0%, #1a3a2a 50%, #0f2318 100%);
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+.splash.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+.splash__inner {
+    text-align: center;
+}
+.splash__logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 1rem;
+    animation: splash-logo 1.2s ease-out both;
+    filter: drop-shadow(0 0 30px rgba(78,203,113,0.3));
+}
+@keyframes splash-logo {
+    0% { opacity: 0; transform: scale(0.5) rotate(-10deg); }
+    60% { opacity: 1; transform: scale(1.08) rotate(2deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+.splash__bar {
+    width: 160px;
+    height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    margin: 2rem auto 0;
+    overflow: hidden;
+}
+.splash__bar-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--color-accent);
+    border-radius: 3px;
+    animation: splash-fill 1.5s 0.3s ease-out forwards;
+}
+@keyframes splash-fill {
+    0% { width: 0%; }
+    60% { width: 70%; }
+    100% { width: 100%; }
+}
+
+/* ========================================
+   Theme Switch (sun/moon)
+   ======================================== */
+.theme-switch {
+    position: relative;
+    width: 56px;
+    height: 28px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+}
+.theme-switch--mobile { display: none; }
+
+.theme-switch__track {
+    width: 100%;
+    height: 100%;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #87CEEB 0%, #FFD700 100%);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.5s ease;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.15);
+}
+
+[data-theme="dark"] .theme-switch__track {
+    background: linear-gradient(135deg, #1a1a3e 0%, #2d2b55 100%);
+}
+
+.theme-switch__thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #FFD700;
+    transition: transform 0.5s cubic-bezier(0.68, -0.3, 0.32, 1.3), background 0.4s ease;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+[data-theme="dark"] .theme-switch__thumb {
+    transform: translateX(28px);
+    background: #e8e8e8;
+}
+
+/* Sun rays */
+.theme-switch__sun {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.4s ease, transform 0.5s ease;
+}
+
+.theme-switch__ray {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2px;
+    height: 6px;
+    margin-left: -1px;
+    margin-top: -14px;
+    background: #FFD700;
+    border-radius: 1px;
+    transform-origin: 1px 14px;
+}
+.theme-switch__ray:nth-child(1) { transform: rotate(0deg); }
+.theme-switch__ray:nth-child(2) { transform: rotate(60deg); }
+.theme-switch__ray:nth-child(3) { transform: rotate(120deg); }
+.theme-switch__ray:nth-child(4) { transform: rotate(180deg); }
+.theme-switch__ray:nth-child(5) { transform: rotate(240deg); }
+.theme-switch__ray:nth-child(6) { transform: rotate(300deg); }
+
+[data-theme="dark"] .theme-switch__sun {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+}
+
+/* Moon crater */
+.theme-switch__moon {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #c4c4c4;
+    top: 3px;
+    right: 3px;
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.4s ease 0.1s, transform 0.4s ease 0.1s;
+}
+
+[data-theme="dark"] .theme-switch__moon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Stars */
+.theme-switch__stars {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+.theme-switch__stars span {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.4s ease 0.2s;
+}
+.theme-switch__stars span:nth-child(1) { top: 7px; left: 10px; }
+.theme-switch__stars span:nth-child(2) { top: 14px; left: 18px; }
+.theme-switch__stars span:nth-child(3) { top: 6px; left: 22px; }
+
+[data-theme="dark"] .theme-switch__stars span {
+    opacity: 1;
+    animation: star-twinkle 2s ease-in-out infinite;
+}
+[data-theme="dark"] .theme-switch__stars span:nth-child(2) { animation-delay: 0.5s; }
+[data-theme="dark"] .theme-switch__stars span:nth-child(3) { animation-delay: 1s; }
+
+@keyframes star-twinkle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.5); }
+}
+
 /* Theme transition animation */
 html.theme-transition,
 html.theme-transition *,
@@ -179,13 +366,6 @@ input, textarea { font-family: inherit; font-size: inherit; }
 .header__controls { display: flex; align-items: center; gap: 0.75rem; }
 .header__right-mobile { display: none; align-items: center; gap: 0.75rem; z-index: 1001; }
 
-/* Theme Toggle */
-.theme-toggle { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md); color: rgba(255,255,255,0.75); transition: all var(--transition-fast); }
-.theme-toggle:hover { color: var(--color-white); background: rgba(255,255,255,0.1); }
-.theme-toggle__icon--dark { display: none; }
-[data-theme="dark"] .theme-toggle__icon--light { display: none; }
-[data-theme="dark"] .theme-toggle__icon--dark { display: block; }
-.theme-toggle--mobile { display: none; }
 
 /* Lang Switcher */
 .header__lang { position: relative; }
@@ -406,8 +586,8 @@ input, textarea { font-family: inherit; font-size: inherit; }
     .section-title { font-size: var(--font-size-3xl); }
     .header__burger { display: flex; }
     .header__right-mobile { display: flex; }
-    .header__controls .theme-toggle { display: none; }
-    .theme-toggle--mobile { display: flex; }
+    .header__controls .theme-switch { display: none; }
+    .theme-switch--mobile { display: block; }
     .header__nav { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #0f1923; flex-direction: column; justify-content: center; align-items: center; gap: 3rem; display: none; z-index: 999; }
     .header__nav.open { display: flex; }
     .header__nav-list { flex-direction: column; gap: 2rem; }
