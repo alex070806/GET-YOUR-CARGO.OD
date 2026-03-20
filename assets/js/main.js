@@ -365,18 +365,57 @@ function initContactForm() {
         e.preventDefault();
         var btn = form.querySelector('button[type="submit"]');
         var original = btn.textContent;
-        btn.textContent = '\u2713';
-        btn.style.background = '#2d5e43';
-        btn.style.borderColor = '#2d5e43';
-        btn.style.color = '#fff';
+
+        btn.textContent = '...';
         btn.disabled = true;
-        setTimeout(function() {
-            btn.textContent = original;
-            btn.style.background = '';
-            btn.style.borderColor = '';
-            btn.style.color = '';
+
+        var data = {
+            name: form.querySelector('#name').value,
+            email: form.querySelector('#email').value,
+            phone: form.querySelector('#phone').value || '—',
+            message: form.querySelector('#message').value,
+            _subject: 'Get Your Cargo.OD — новое сообщение с сайта'
+        };
+
+        fetch('https://formsubmit.co/ajax/getyourcargo.od@gmail.com', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(function(response) { return response.json(); })
+        .then(function(result) {
+            if (result.success) {
+                btn.textContent = '\u2713';
+                btn.style.background = '#2d5e43';
+                btn.style.borderColor = '#2d5e43';
+                btn.style.color = '#fff';
+                form.reset();
+            } else {
+                btn.textContent = '\u2717';
+                btn.style.background = '#dc2626';
+                btn.style.borderColor = '#dc2626';
+                btn.style.color = '#fff';
+            }
+            setTimeout(function() {
+                btn.textContent = original;
+                btn.style.background = '';
+                btn.style.borderColor = '';
+                btn.style.color = '';
+                btn.disabled = false;
+            }, 3000);
+        })
+        .catch(function() {
+            btn.textContent = '\u2717';
+            btn.style.background = '#dc2626';
+            btn.style.borderColor = '#dc2626';
+            btn.style.color = '#fff';
             btn.disabled = false;
-            form.reset();
-        }, 3000);
+            setTimeout(function() {
+                btn.textContent = original;
+                btn.style.background = '';
+                btn.style.borderColor = '';
+                btn.style.color = '';
+            }, 3000);
+        });
     });
 }

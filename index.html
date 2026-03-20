@@ -510,6 +510,24 @@
                 <p class="section-desc" data-i18n="contact.desc">Мы всегда на связи — выберите удобный способ</p>
             </div>
             <div class="contact__grid">
+                <div class="contact__form-wrapper">
+                    <form class="contact__form" id="contactForm">
+                        <h3 class="contact__form-title" data-i18n="contact.form.title">Отправить сообщение</h3>
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" data-i18n-placeholder="contact.form.name" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" data-i18n-placeholder="contact.form.phone" placeholder="Телефон">
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" data-i18n-placeholder="contact.form.message" placeholder="Ваше сообщение" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full" data-i18n="contact.form.submit">Отправить</button>
+                    </form>
+                </div>
                 <div class="contact__info">
                     <div class="contact__card">
                         <div class="contact__card-icon">
@@ -552,24 +570,6 @@
                             </a>
                         </div>
                     </div>
-                </div>
-                <div class="contact__form-wrapper">
-                    <form class="contact__form" id="contactForm">
-                        <h3 class="contact__form-title" data-i18n="contact.form.title">Отправить сообщение</h3>
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" data-i18n-placeholder="contact.form.name" placeholder="Ваше имя" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" id="phone" name="phone" data-i18n-placeholder="contact.form.phone" placeholder="Телефон">
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" data-i18n-placeholder="contact.form.message" placeholder="Ваше сообщение" rows="4" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn--primary btn--full" data-i18n="contact.form.submit">Отправить</button>
-                    </form>
                 </div>
             </div>
         </div>
