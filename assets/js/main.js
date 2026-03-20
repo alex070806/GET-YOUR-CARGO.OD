@@ -276,7 +276,7 @@ function animateOne(el) {
    Reveal on scroll
    ======================================== */
 function initRevealAnimations() {
-    var selectors = '.about__card,.about__feature,.services__card,.containers__card,.geography__info-card,.contact__card,.contact__form-wrapper,.cta__inner,.section-header,.faq__item';
+    var selectors = '.about__card,.about__feature,.about__photo,.services__card,.gallery__item,.containers__card,.geography__info-card,.contact__card,.contact__form-wrapper,.cta__inner,.section-header,.faq__item';
     var elements = document.querySelectorAll(selectors);
 
     for (var i = 0; i < elements.length; i++) {
