@@ -538,6 +538,16 @@ input, textarea { font-family: inherit; font-size: inherit; }
 .form-group input:focus, .form-group textarea:focus { border-color: var(--color-accent); box-shadow: 0 0 0 3px rgba(78,203,113,0.15); }
 .form-group textarea { resize: vertical; min-height: 120px; }
 
+.btn--submit-success { background: var(--color-accent) !important; border-color: var(--color-accent) !important; color: var(--color-dark) !important; transform: scale(1.03); box-shadow: 0 8px 25px rgba(78,203,113,0.4); }
+.btn--submit-success svg { display: inline-block; vertical-align: middle; animation: checkDraw 0.5s ease forwards; }
+.btn--submit-error { background: #dc2626 !important; border-color: #dc2626 !important; color: #fff !important; animation: btnShake 0.4s ease; }
+.btn--submit-loading { pointer-events: none; position: relative; color: transparent !important; }
+.btn--submit-loading::after { content: ''; position: absolute; width: 22px; height: 22px; border: 3px solid rgba(255,255,255,0.3); border-top-color: var(--color-dark); border-radius: 50%; animation: btnSpin 0.7s linear infinite; }
+
+@keyframes checkDraw { 0% { opacity: 0; transform: scale(0.3) rotate(-20deg); } 50% { opacity: 1; transform: scale(1.15) rotate(5deg); } 100% { opacity: 1; transform: scale(1) rotate(0deg); } }
+@keyframes btnShake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
+@keyframes btnSpin { to { transform: rotate(360deg); } }
+
 /* ========================================
    Footer
    ======================================== */

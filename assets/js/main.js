@@ -361,12 +361,16 @@ function initFAQ() {
 function initContactForm() {
     var form = document.getElementById('contactForm');
     if (!form) return;
+
+    var checkSvg = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17L4 12"/></svg>';
+    var crossSvg = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>';
+
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         var btn = form.querySelector('button[type="submit"]');
-        var original = btn.textContent;
+        var originalHTML = btn.innerHTML;
 
-        btn.textContent = '...';
+        btn.classList.add('btn--submit-loading');
         btn.disabled = true;
 
         var data = {
@@ -377,6 +381,14 @@ function initContactForm() {
             _subject: 'Get Your Cargo.OD — новое сообщение с сайта'
         };
 
+        function resetBtn() {
+            setTimeout(function() {
+                btn.innerHTML = originalHTML;
+                btn.classList.remove('btn--submit-success', 'btn--submit-error');
+                btn.disabled = false;
+            }, 3000);
+        }
+
         fetch('https://formsubmit.co/ajax/getyourcargo.od@gmail.com', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -384,38 +396,22 @@ function initContactForm() {
         })
         .then(function(response) { return response.json(); })
         .then(function(result) {
+            btn.classList.remove('btn--submit-loading');
             if (result.success) {
-                btn.textContent = '\u2713';
-                btn.style.background = '#2d5e43';
-                btn.style.borderColor = '#2d5e43';
-                btn.style.color = '#fff';
+                btn.innerHTML = checkSvg;
+                btn.classList.add('btn--submit-success');
                 form.reset();
             } else {
-                btn.textContent = '\u2717';
-                btn.style.background = '#dc2626';
-                btn.style.borderColor = '#dc2626';
-                btn.style.color = '#fff';
+                btn.innerHTML = crossSvg;
+                btn.classList.add('btn--submit-error');
             }
-            setTimeout(function() {
-                btn.textContent = original;
-                btn.style.background = '';
-                btn.style.borderColor = '';
-                btn.style.color = '';
-                btn.disabled = false;
-            }, 3000);
+            resetBtn();
         })
         .catch(function() {
-            btn.textContent = '\u2717';
-            btn.style.background = '#dc2626';
-            btn.style.borderColor = '#dc2626';
-            btn.style.color = '#fff';
-            btn.disabled = false;
-            setTimeout(function() {
-                btn.textContent = original;
-                btn.style.background = '';
-                btn.style.borderColor = '';
-                btn.style.color = '';
-            }, 3000);
+            btn.classList.remove('btn--submit-loading');
+            btn.innerHTML = crossSvg;
+            btn.classList.add('btn--submit-error');
+            resetBtn();
         });
     });
 }
