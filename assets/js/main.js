@@ -253,7 +253,7 @@ function runCounters() {
         }
     }
 
-    setTimeout(go, 2500);
+    setTimeout(go, 900);
 }
 
 function animateOne(el) {
