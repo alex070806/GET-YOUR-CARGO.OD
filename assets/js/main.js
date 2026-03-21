@@ -229,12 +229,20 @@ function initCountUp() {
     window.addEventListener('pageshow', function() { runCounters(); });
 }
 
+function formatHeroStatNumber(n, thousandsSep) {
+    var v = Math.max(0, Math.round(Number(n)));
+    var s = String(v);
+    if (!thousandsSep) return s;
+    return s.replace(/\B(?=(\d{3})+(?!\d))/g, thousandsSep);
+}
+
 function runCounters() {
     var counters = document.querySelectorAll('.hero__stat-number[data-count]');
     if (!counters.length) return;
 
     for (var i = 0; i < counters.length; i++) {
-        counters[i].textContent = '0';
+        var sep = counters[i].getAttribute('data-thousands-sep') || '';
+        counters[i].textContent = formatHeroStatNumber(0, sep);
         counters[i].removeAttribute('data-done');
     }
 
@@ -252,6 +260,7 @@ function animateOne(el) {
     if (el.getAttribute('data-done')) return;
     el.setAttribute('data-done', '1');
     var target = parseInt(el.getAttribute('data-count'), 10);
+    var thousandsSep = el.getAttribute('data-thousands-sep') || '';
     var start = Date.now();
     var duration = 1800;
 
@@ -259,7 +268,7 @@ function animateOne(el) {
         var t = Math.min((Date.now() - start) / duration, 1);
         var ease = 1 - Math.pow(1 - t, 3);
         var val = Math.round(ease * target);
-        el.textContent = val;
+        el.textContent = formatHeroStatNumber(val, thousandsSep);
 
         var shake = (1 - t) * 3;
         el.style.transform = 'translateY(' + Math.round(Math.sin(t * 20) * shake) + 'px)';
@@ -267,7 +276,7 @@ function animateOne(el) {
         if (t < 1) {
             requestAnimationFrame(step);
         } else {
-            el.textContent = target;
+            el.textContent = formatHeroStatNumber(target, thousandsSep);
             el.style.transform = '';
         }
     }
