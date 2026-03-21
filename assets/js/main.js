@@ -278,7 +278,7 @@ function animateOne(el) {
    Reveal on scroll
    ======================================== */
 function initRevealAnimations() {
-    var selectors = '.about__card,.about__feature,.services__card,.containers__card,.geography__info-card,.contact__card,.contact__form-wrapper,.cta__inner,.section-header,.faq__item';
+    var selectors = '.about__card,.about__feature,.about__photo,.services__card,.gallery__item,.containers__card,.geography__info-card,.contact__card,.contact__form-wrapper,.cta__inner,.section-header,.faq__item';
     var elements = document.querySelectorAll(selectors);
 
     for (var i = 0; i < elements.length; i++) {
@@ -363,22 +363,57 @@ function initFAQ() {
 function initContactForm() {
     var form = document.getElementById('contactForm');
     if (!form) return;
+
+    var checkSvg = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17L4 12"/></svg>';
+    var crossSvg = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>';
+
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         var btn = form.querySelector('button[type="submit"]');
-        var original = btn.textContent;
-        btn.textContent = '\u2713';
-        btn.style.background = '#2d5e43';
-        btn.style.borderColor = '#2d5e43';
-        btn.style.color = '#fff';
+        var originalHTML = btn.innerHTML;
+
+        btn.classList.add('btn--submit-loading');
         btn.disabled = true;
-        setTimeout(function() {
-            btn.textContent = original;
-            btn.style.background = '';
-            btn.style.borderColor = '';
-            btn.style.color = '';
-            btn.disabled = false;
-            form.reset();
-        }, 3000);
+
+        var data = {
+            name: form.querySelector('#name').value,
+            email: form.querySelector('#email').value,
+            phone: form.querySelector('#phone').value || '—',
+            message: form.querySelector('#message').value,
+            _subject: 'Get Your Cargo.OD — новое сообщение с сайта'
+        };
+
+        function resetBtn() {
+            setTimeout(function() {
+                btn.innerHTML = originalHTML;
+                btn.classList.remove('btn--submit-success', 'btn--submit-error');
+                btn.disabled = false;
+            }, 3000);
+        }
+
+        fetch('https://formsubmit.co/ajax/getyourcargo.od@gmail.com', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(function(response) { return response.json(); })
+        .then(function(result) {
+            btn.classList.remove('btn--submit-loading');
+            if (result.success) {
+                btn.innerHTML = checkSvg;
+                btn.classList.add('btn--submit-success');
+                form.reset();
+            } else {
+                btn.innerHTML = crossSvg;
+                btn.classList.add('btn--submit-error');
+            }
+            resetBtn();
+        })
+        .catch(function() {
+            btn.classList.remove('btn--submit-loading');
+            btn.innerHTML = crossSvg;
+            btn.classList.add('btn--submit-error');
+            resetBtn();
+        });
     });
 }
