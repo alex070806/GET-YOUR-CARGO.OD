@@ -226,7 +226,9 @@ function initScrollSpy() {
    ======================================== */
 function initCountUp() {
     runCounters();
-    window.addEventListener('pageshow', function() { runCounters(); });
+    window.addEventListener('pageshow', function(ev) {
+        if (ev.persisted) runCounters();
+    });
 }
 
 function formatHeroStatNumber(n, thousandsSep) {
@@ -253,7 +255,7 @@ function runCounters() {
         }
     }
 
-    setTimeout(go, 900);
+    setTimeout(go, 2500);
 }
 
 function animateOne(el) {
