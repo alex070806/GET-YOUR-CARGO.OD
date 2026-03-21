@@ -158,7 +158,9 @@ function applyLanguage(lang) {
     document.documentElement.lang = (lang === 'uk') ? 'uk' : lang;
 
     var currentSpan = document.querySelector('.header__lang-current');
-    if (currentSpan) currentSpan.textContent = lang.toUpperCase();
+    if (currentSpan) {
+        currentSpan.textContent = lang === 'ru' ? 'KZ' : lang.toUpperCase();
+    }
 
     var allOptions = document.querySelectorAll('.header__lang-option');
     for (var i = 0; i < allOptions.length; i++) {
