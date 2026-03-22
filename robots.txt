@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://getyourcargo.od.ua/sitemap.xml
+Sitemap: https://getyourcargo.com/sitemap.xml

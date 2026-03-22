@@ -2,14 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://getyourcargo.od.ua/</loc>
+    <loc>https://getyourcargo.com/</loc>
     <lastmod>2026-03-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="uk" href="https://getyourcargo.od.ua/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://getyourcargo.od.ua/?lang=ru"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://getyourcargo.od.ua/?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="ro" href="https://getyourcargo.od.ua/?lang=ro"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://getyourcargo.od.ua/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://getyourcargo.com/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://getyourcargo.com/?lang=ru"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://getyourcargo.com/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="ro" href="https://getyourcargo.com/?lang=ro"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://getyourcargo.com/"/>
   </url>
 </urlset>
